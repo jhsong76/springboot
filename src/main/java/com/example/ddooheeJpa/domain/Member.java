@@ -21,6 +21,7 @@ public class Member {
     @Embedded
     private Address address;
 
-    @OneToMany(mappedBy = "member", fetch = FetchType.LAZY) // 멤버의 측에선 하나의 회원이 여러개의 주문을 하기 때문에 -> 일대다 관계계
+    @OneToMany(mappedBy = "member") // 멤버의 측에선 하나의 회원이 여러개의 주문을 하기 때문에 -> 일대다 관계계
     private List<Order> orders = new ArrayList<>();
+    // 컬렉션을 생성 후 바꾸지 말기
 }
