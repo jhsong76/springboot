@@ -23,7 +23,7 @@ public abstract class Item {
     private int price;
     private int stockQuantity;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "items") // 중간 테이블 mapping 필요
     private List<Category> categories = new ArrayList<>();
 

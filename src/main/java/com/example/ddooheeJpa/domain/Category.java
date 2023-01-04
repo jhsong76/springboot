@@ -19,7 +19,7 @@ public class Category {
 
     private String name;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "category_item",
             joinColumns = @JoinColumn(name = "category_id"),
             inverseJoinColumns = @JoinColumn(name = "item_id"))
@@ -29,7 +29,7 @@ public class Category {
      * 내 연관관계는,
      * 자식은 여러개를 가질 수 있기 때문에 List
      */
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_id")
     private Category parent;
 
