@@ -5,9 +5,12 @@ import com.example.ddooheeJpa.domain.item.Item;
 import com.example.ddooheeJpa.domain.repository.ItemRepository;
 import com.example.ddooheeJpa.domain.repository.MemberRepository;
 import com.example.ddooheeJpa.domain.repository.OrderRepository;
+import com.example.ddooheeJpa.domain.repository.OrderSearch;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @Transactional(readOnly = true)
@@ -56,7 +59,7 @@ public class OrderService {
     }
 
     //검색
-    /*public List<Order> findOrders(OrderSearch orderSearch) {
-        return orderRepository.findAll(orderSearch);
-    }*/
+    public List<Order> findOrders(OrderSearch orderSearch) {
+        return orderRepository.findAllByString(orderSearch);
+    }
 }
