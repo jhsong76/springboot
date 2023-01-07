@@ -22,11 +22,13 @@ public class ItemService {
     }
 
     @Transactional
-    public void updateItem(Long itemId, Book param) {
+    public void updateItem(Long itemId, String name, int price, int stockQuantity ) {
         Item findItem = itemRepository.findOne(itemId); // 영속 상태
-        findItem.setPrice(param.getPrice());
-        findItem.setName(param.getName());
-        findItem.setStockQuantity(param.getStockQuantity());
+        // findItem.change(price, name, stockQuantity);
+        // set 보다 change처럼 의미 있는 메서드로 생성해야 함.
+        findItem.setName(name);
+        findItem.setPrice(price);
+        findItem.setStockQuantity(stockQuantity);
 
     }
 
