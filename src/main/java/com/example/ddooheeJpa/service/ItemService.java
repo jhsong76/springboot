@@ -1,5 +1,6 @@
 package com.example.ddooheeJpa.service;
 
+import com.example.ddooheeJpa.domain.item.Book;
 import com.example.ddooheeJpa.domain.item.Item;
 import com.example.ddooheeJpa.domain.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +19,15 @@ public class ItemService {
     @Transactional
     public void saveItem(Item item) {
         itemRepository.save(item);
+    }
+
+    @Transactional
+    public void updateItem(Long itemId, Book param) {
+        Item findItem = itemRepository.findOne(itemId); // 영속 상태
+        findItem.setPrice(param.getPrice());
+        findItem.setName(param.getName());
+        findItem.setStockQuantity(param.getStockQuantity());
+
     }
 
     public List<Item> findItems() {
