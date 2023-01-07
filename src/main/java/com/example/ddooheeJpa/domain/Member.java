@@ -1,10 +1,10 @@
 package com.example.ddooheeJpa.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +22,7 @@ public class Member {
     @Embedded
     private Address address;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "member") // 멤버의 측에선 하나의 회원이 여러개의 주문을 하기 때문에 -> 일대다 관계계
     private List<Order> orders = new ArrayList<>();
     // 컬렉션을 생성 후 바꾸지 말기
