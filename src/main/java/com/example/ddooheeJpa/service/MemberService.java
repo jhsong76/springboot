@@ -1,7 +1,7 @@
 package com.example.ddooheeJpa.service;
 
 import com.example.ddooheeJpa.domain.Member;
-import com.example.ddooheeJpa.repository.MemberRepository;
+import com.example.ddooheeJpa.domain.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

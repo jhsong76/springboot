@@ -7,7 +7,7 @@ import com.example.ddooheeJpa.domain.OrderStatus;
 import com.example.ddooheeJpa.domain.item.Book;
 import com.example.ddooheeJpa.domain.item.Item;
 import com.example.ddooheeJpa.exception.NotEnoughStockException;
-import com.example.ddooheeJpa.repository.OrderRepository;
+import com.example.ddooheeJpa.domain.repository.OrderRepository;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
