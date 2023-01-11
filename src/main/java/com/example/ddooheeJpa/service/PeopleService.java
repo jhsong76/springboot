@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
@@ -23,5 +25,9 @@ public class PeopleService {
         peopleRepository.save(people); // Entity를 저장
 
         return people;
+    }
+
+    public List<People> getPeoples() {
+        return peopleRepository.findAll();
     }
 }

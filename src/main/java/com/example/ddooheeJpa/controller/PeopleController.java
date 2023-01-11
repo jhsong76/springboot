@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.List;
+
 
 @Controller
 @RequiredArgsConstructor
@@ -28,5 +30,11 @@ public class PeopleController {
         People people = peopleService.save(peopleDTO);
 
         return new ResponseEntity<>(people, HttpStatus.OK);
+    }
+
+    @GetMapping("/people/List")
+    public ResponseEntity<List<People>> getPeoples() {
+        List<People> peoples = peopleService.getPeoples();
+        return new ResponseEntity<List<People>>(peoples, HttpStatus.OK);
     }
 }
