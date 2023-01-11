@@ -1,4 +1,4 @@
-package com.example.ddooheeJpa.controller.api;
+package com.example.ddooheeJpa.api;
 
 import com.example.ddooheeJpa.domain.Member;
 import com.example.ddooheeJpa.service.MemberService;
