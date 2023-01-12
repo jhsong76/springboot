@@ -1,16 +1,18 @@
 package com.example.ddooheeJpa.domain.Match.Model;
 
+import com.example.ddooheeJpa.domain.User.Model.User;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
+import static javax.persistence.FetchType.LAZY;
+
 @Entity
-@Table(name = "usermatch")
+@Table(name = "userMatch")
 @Getter @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Match {
@@ -20,8 +22,13 @@ public class Match {
     @Column(name = "userMatchIdx")
     private Long id;
 
-    private Long userGetMatched; // 연결을 당한 유저
-    private Long userMatching; // 연결을 시도한 유저
+    @ManyToOne(fetch = LAZY)
+    @JoinColumn(name = "userGetMatched")
+    private User userGetMatched; // 연결을 당한 유저
+
+    @ManyToOne(fetch = LAZY)
+    @JoinColumn(name = "userMatching")
+    private User userMatching; // 연결을 시도한 유저
 
 
     @Enumerated(EnumType.STRING)
