@@ -5,11 +5,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-<<<<<<< HEAD:build/generated/sources/annotationProcessor/java/main/com/example/ddooheeJpa/domain/Match/domain/MatchMapperImpl.java
-    date = "2023-01-13T13:13:24+0900",
-=======
-    date = "2023-01-13T02:29:16+0900",
->>>>>>> 5e97e70cff396b419cf5a09637b4cc09d60b4761:build/generated/sources/annotationProcessor/java/main/com/example/ddooheeJpa/domain/Match/Model/MatchMapperImpl.java
+    date = "2023-01-13T13:32:18+0900",
     comments = "version: 1.3.1.Final, compiler: javac, environment: Java 11.0.15 (Oracle Corporation)"
 )
 @Component
