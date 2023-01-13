@@ -1,4 +1,4 @@
-package com.example.ddooheeJpa.domain.Interest.domain.Dto;
+package com.example.ddooheeJpa.domain.Interest.domain;
 
 import com.example.ddooheeJpa.domain.User.Model.User;
 import lombok.AccessLevel;

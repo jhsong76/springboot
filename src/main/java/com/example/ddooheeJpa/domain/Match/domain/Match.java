@@ -46,4 +46,6 @@ public class Match {
     public void updateGetMatchedStatus(userMatchStatus userMatchStatus) {
         this.userMatchStatus = userMatchStatus;
     }
+
+
 }

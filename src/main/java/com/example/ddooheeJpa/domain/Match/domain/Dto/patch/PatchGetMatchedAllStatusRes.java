@@ -7,17 +7,12 @@ import lombok.Data;
 
 @Builder
 @Data
-public class PatchGetMatchedStatusRes {
-    //private User userGetMatched;
-    // private User userMatching;
+public class PatchGetMatchedAllStatusRes {
 
     private User userGetMatched;
 
-    //@Enumerated(EnumType.STRING)
-    // private userMatchStatus userMatchStatus; // 매칭 상태 [INACTIVE, ACTIVE]
-
-    static public PatchGetMatchedStatusRes toDto(Match match) {
-        return PatchGetMatchedStatusRes.builder()
+    static public PatchGetMatchedAllStatusRes toDto(Match match) {
+        return PatchGetMatchedAllStatusRes.builder()
                 .userGetMatched(match.getUserGetMatched())
                 .build();
     }

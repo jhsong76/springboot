@@ -1,5 +1,6 @@
 package com.example.ddooheeJpa.domain.User.Model;
 
+import com.example.ddooheeJpa.domain.Like.Like;
 import com.example.ddooheeJpa.domain.Match.domain.Match;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -32,6 +33,7 @@ public class User {
     private String userInterest;
     private String userInfo;
     private String userProfileImg;
+    //private long userLike;
 
     //@OneToMany(mappedBy = "Match")
     //private List<Match> matches = new ArrayList<>();

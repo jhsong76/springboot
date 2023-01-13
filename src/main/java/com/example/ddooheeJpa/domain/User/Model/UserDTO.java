@@ -1,10 +1,13 @@
 package com.example.ddooheeJpa.domain.User.Model;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
+
 public class UserDTO {
     private String userPhoneNum;
     private String userNickName;
@@ -18,4 +21,6 @@ public class UserDTO {
     private String userInterest;
     private String userInfo;
     private String userProfileImg;
+
+
 }

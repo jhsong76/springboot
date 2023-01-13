@@ -9,9 +9,9 @@ import javax.persistence.Enumerated;
 
 @NoArgsConstructor
 @Data
-public class PatchGetMatchedStatusReq {
+public class PatchGetMatchedAllStatusReq {
+
     @Enumerated(EnumType.STRING)
     private userMatchStatus userMatchStatus;
-
 
 }
