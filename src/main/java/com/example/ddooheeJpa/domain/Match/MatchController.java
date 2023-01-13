@@ -30,7 +30,7 @@ public class MatchController {
     @PatchMapping("/{id}")
     @ResponseBody
     public BaseResponse<PatchGetMatchedStatusRes> updateGetMatchedStatus(@PathVariable("id") Long id,
-          @RequestBody PatchGetMatchedStatusReq dto) {
+                                                                         @RequestBody PatchGetMatchedStatusReq dto) {
         Match match = matchService.updateGetMatchedStatus(id, dto);
 
         PatchGetMatchedStatusRes patchGetMatchedStatusRes =
@@ -41,7 +41,7 @@ public class MatchController {
     @PatchMapping("/{id}/block")
     @ResponseBody
     public BaseResponse<PatchGetMatchedStatusRes> updateGetMatchedStatusBlock(@PathVariable("id") Long id,
-            @RequestBody PatchGetMatchedStatusReq dto) {
+                                                                              @RequestBody PatchGetMatchedStatusReq dto) {
         Match match = matchService.updateGetMatchedStatus(id, dto);
 
         PatchGetMatchedStatusRes patchGetMatchedStatusRes =

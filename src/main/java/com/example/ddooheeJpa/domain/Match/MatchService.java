@@ -48,7 +48,7 @@ public class MatchService {
 
         // PathVariable로 조회
         Match findUser = matchRepository
-        .findById(id)
+                .findById(id)
                 .orElseThrow(() -> new BaseException(BaseResponseStatus.NOT_USER));
 
         findUser.updateGetMatchedStatus(dto.getUserMatchStatus());

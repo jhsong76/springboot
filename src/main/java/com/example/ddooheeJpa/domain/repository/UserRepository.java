@@ -20,7 +20,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     List<Match> findMatchByuserId(@Param("userGetMatched") Optional<Match> userGetMatched);
 
     //@Query(value = "select u.userNickName, u.userMajorName, u.userProfileImg from User u where u.userId = :userMatching")
-   // List<Match> findMatchingByuserId(@Param("userId")Long userId);
+    // List<Match> findMatchingByuserId(@Param("userId")Long userId);
 
 
 }
