@@ -1,6 +1,6 @@
 package com.example.ddooheeJpa.match.converter;
 
-import com.example.ddooheeJpa.domain.User.entity.User;
+import com.example.ddooheeJpa.user.entity.User;
 import com.example.ddooheeJpa.match.dto.MatchAllOkResDto;
 import com.example.ddooheeJpa.match.dto.MatchOkResDto;
 import com.example.ddooheeJpa.match.dto.MatchingCreateResDto;

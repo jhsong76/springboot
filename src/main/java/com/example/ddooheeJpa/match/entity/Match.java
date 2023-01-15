@@ -1,7 +1,7 @@
 package com.example.ddooheeJpa.match.entity;
 
 
-import com.example.ddooheeJpa.domain.User.entity.User;
+import com.example.ddooheeJpa.user.entity.User;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 

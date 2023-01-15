@@ -3,7 +3,7 @@ package com.example.ddooheeJpa.block.converter;
 
 import com.example.ddooheeJpa.block.entity.Block;
 import com.example.ddooheeJpa.block.entity.userBlockStatus;
-import com.example.ddooheeJpa.domain.User.entity.User;
+import com.example.ddooheeJpa.user.entity.User;
 import com.example.ddooheeJpa.match.dto.MatchNoResDto;
 import org.springframework.stereotype.Component;
 

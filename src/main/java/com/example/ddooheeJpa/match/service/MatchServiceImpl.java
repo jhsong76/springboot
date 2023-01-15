@@ -4,8 +4,8 @@ import com.example.ddooheeJpa.block.converter.Blockconverter;
 import com.example.ddooheeJpa.block.entity.Block;
 
 import com.example.ddooheeJpa.block.repository.BlockRepository;
-import com.example.ddooheeJpa.domain.User.entity.User;
-import com.example.ddooheeJpa.domain.User.repository.UserRepository;
+import com.example.ddooheeJpa.user.entity.User;
+import com.example.ddooheeJpa.user.repository.UserRepository;
 import com.example.ddooheeJpa.match.converter.MatchConverter;
 import com.example.ddooheeJpa.match.dto.*;
 import com.example.ddooheeJpa.match.entity.Match;
