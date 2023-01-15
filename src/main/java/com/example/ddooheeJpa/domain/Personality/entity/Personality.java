@@ -1,4 +1,4 @@
-package com.example.ddooheeJpa.domain.Like;
+package com.example.ddooheeJpa.domain.Personality.entity;
 
 import com.example.ddooheeJpa.domain.User.entity.User;
 import lombok.AccessLevel;
@@ -12,24 +12,20 @@ import java.time.LocalDateTime;
 import static javax.persistence.FetchType.LAZY;
 
 @Entity
-@Table(name = "userLike")
-@Getter
-@Setter
+@Table(name = "userPersonality")
+@Getter @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Like {
+public class Personality {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "userLikeIdx")
+    @Column(name = "userPersonalityIdx")
     private Long id;
 
     @ManyToOne(fetch = LAZY)
-    @JoinColumn(name = "userGetLike")
-    private User userGetLike; // 좋아요 당한 유저
+    @JoinColumn(name = "userIdx")
+    private User userIdx;
 
-    @ManyToOne(fetch = LAZY)
-    @JoinColumn(name = "userGiveLike")
-    private User userGiveLike; // 좋아요 시도한 유저
-
+    private String personality;
 
     private LocalDateTime createdAt;
 

@@ -1,6 +1,6 @@
 package com.example.ddooheeJpa.domain.Match.domain.Dto.get;
 
-import com.example.ddooheeJpa.domain.User.Model.User;
+import com.example.ddooheeJpa.domain.User.entity.User;
 import lombok.Getter;
 import lombok.Setter;
 

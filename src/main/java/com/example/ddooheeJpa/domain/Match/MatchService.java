@@ -7,9 +7,8 @@ import com.example.ddooheeJpa.domain.Match.domain.Dto.get.GetMatchUserRes;
 import com.example.ddooheeJpa.domain.Match.domain.Dto.patch.PatchGetMatchedStatusReq;
 import com.example.ddooheeJpa.domain.Match.domain.Match;
 import com.example.ddooheeJpa.domain.Match.domain.MatchDTO;
-import com.example.ddooheeJpa.domain.Match.domain.MatchMapper;
-import com.example.ddooheeJpa.domain.User.Model.User;
-import com.example.ddooheeJpa.domain.repository.UserRepository;
+import com.example.ddooheeJpa.domain.User.entity.User;
+import com.example.ddooheeJpa.domain.User.repository.UserRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,26 +24,26 @@ public class MatchService {
     private static MatchRepository matchRepository ;
     private final UserRepository userRepository;
     private final LikeRepository likeRepository;
-    private final MatchMapper matchMapper;
+
 
     public MatchService(MatchRepository matchRepository
-            , UserRepository userRepository
-            , MatchMapper matchMapper,
+            , UserRepository userRepository,
+
                         LikeRepository likeRepository) {
         this.matchRepository = matchRepository;
         this.userRepository = userRepository;
 
-        this.matchMapper = matchMapper;
+
         this.likeRepository = likeRepository;
     }
 
-    @Transactional
-    public Match match(MatchDTO dto) {
-        Match match = matchMapper.toEntity(dto);
-        matchRepository.save(match);
-
-        return match;
-    }
+//    @Transactional
+//    public Match match(MatchDTO dto) {
+//        Match match = matchMapper.toEntity(dto);
+//        matchRepository.save(match);
+//
+//        return match;
+//    }
 
     public static List<Match> getMetched(Long user_id) {
         List<Match> matches = matchRepository.findUserGetMatchingByUserId(user_id);
@@ -53,7 +52,7 @@ public class MatchService {
 
     // 매칭 수락
     @Transactional
-    public Match updateGetMatchedStatus(Long id, PatchGetMatchedStatusReq dto) {
+    public Match updateGetMatchedStatus(Long id,PatchGetMatchedStatusReq dto) {
 
         // PathVariable로 조회
         Match findUser = matchRepository

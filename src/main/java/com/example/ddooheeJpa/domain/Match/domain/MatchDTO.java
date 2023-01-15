@@ -1,6 +1,5 @@
 package com.example.ddooheeJpa.domain.Match.domain;
 
-import com.example.ddooheeJpa.domain.User.Model.User;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,8 +9,8 @@ import javax.persistence.Enumerated;
 @Getter
 @Setter
 public class MatchDTO {
-    private User userGetMatched;
-    private User userMatching;
+    private Long userGetMatched;
+    private Long userMatching;
 
     @Enumerated(EnumType.STRING)
     private userMatchStatus userMatchStatus; // 매칭 상태 [INACTIVE, ACTIVE]

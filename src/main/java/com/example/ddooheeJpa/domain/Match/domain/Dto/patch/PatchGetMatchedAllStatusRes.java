@@ -1,7 +1,7 @@
 package com.example.ddooheeJpa.domain.Match.domain.Dto.patch;
 
 import com.example.ddooheeJpa.domain.Match.domain.Match;
-import com.example.ddooheeJpa.domain.User.Model.User;
+import com.example.ddooheeJpa.domain.User.entity.User;
 import lombok.Builder;
 import lombok.Data;
 

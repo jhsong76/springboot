@@ -6,7 +6,7 @@ import com.example.ddooheeJpa.domain.Match.domain.Dto.patch.PatchGetMatchedStatu
 import com.example.ddooheeJpa.domain.Match.domain.Dto.patch.PatchGetMatchedStatusRes;
 import com.example.ddooheeJpa.domain.Match.domain.Match;
 import com.example.ddooheeJpa.domain.Match.domain.MatchDTO;
-import com.example.ddooheeJpa.domain.User.UserService;
+import com.example.ddooheeJpa.domain.User.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,28 +23,32 @@ import java.util.Map;
 public class MatchController {
     private final MatchService matchService;
 
-    private final UserService userService;
+    //private final UserService userService;
     // 매칭 시도
-    @PostMapping("")
-    public ResponseEntity<Match> postMatch(@RequestBody MatchDTO dto) {
-        Match match = matchService.match(dto);
+//    @PostMapping("")
+//    public ResponseEntity<Match> postMatch(@RequestBody MatchDTO dto) {
+//        Match match = matchService.match(dto);
+//
+//        return new ResponseEntity<>(match, HttpStatus.OK);
+//    }
 
-        return new ResponseEntity<>(match, HttpStatus.OK);
-    }
+
 
     // 매칭 허용
     @PatchMapping("/{id}")
     @ResponseBody
     public BaseResponse<PatchGetMatchedStatusRes> updateGetMatchedStatus(@PathVariable("id") Long id,
                                                                          @RequestBody PatchGetMatchedStatusReq dto) {
-        Match match = matchService.updateGetMatchedStatus(id, dto);
+        Match match = matchService.updateGetMatchedStatus(id , dto);
 
         PatchGetMatchedStatusRes patchGetMatchedStatusRes =
                 PatchGetMatchedStatusRes.toDto(match);
         return new BaseResponse<>(patchGetMatchedStatusRes);
     }
 
-    // 매칭 거절
+
+
+     // 매칭 거절
     @PatchMapping("/{id}/block")
     @ResponseBody
     public BaseResponse<PatchGetMatchedStatusRes> updateGetMatchedStatusBlock(@PathVariable("id") Long id,
