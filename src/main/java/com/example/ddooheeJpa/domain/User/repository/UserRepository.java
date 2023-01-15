@@ -1,6 +1,6 @@
 package com.example.ddooheeJpa.domain.User.repository;
 
-import com.example.ddooheeJpa.domain.Match.domain.Match;
+import com.example.ddooheeJpa.match.entity.Match;
 import com.example.ddooheeJpa.domain.User.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -21,5 +21,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     //@Query(value = "select u.userNickName, u.userMajorName, u.userProfileImg from User u where u.userId = :userMatching")
     // List<Match> findMatchingByuserId(@Param("userId")Long userId);
 
+   // Optional<User> findByUserMatching
 
 }

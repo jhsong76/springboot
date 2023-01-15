@@ -1,12 +1,10 @@
 package com.example.ddooheeJpa.domain.User.entity;
 
 
-import com.example.ddooheeJpa.domain.Like.Like;
-import com.example.ddooheeJpa.domain.Match.domain.Match;
+import com.example.ddooheeJpa.match.entity.Match;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -35,7 +33,8 @@ public class User {
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<UserInterest> userInterests;
-    //private long userLike;
+
+
 
     //@OneToMany(mappedBy = "Match")
     //private List<Match> matches = new ArrayList<>();
