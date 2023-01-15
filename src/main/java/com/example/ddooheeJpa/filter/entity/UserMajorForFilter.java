@@ -1,4 +1,4 @@
-package com.example.ddooheeJpa.Filter.entity;
+package com.example.ddooheeJpa.filter.entity;
 
 import com.example.ddooheeJpa.user.entity.User;
 import lombok.AccessLevel;
