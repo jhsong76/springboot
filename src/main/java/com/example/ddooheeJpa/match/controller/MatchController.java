@@ -1,15 +1,14 @@
 package com.example.ddooheeJpa.match.controller;
 
 
-import com.example.ddooheeJpa.match.dto.MatchAllOkResDto;
-import com.example.ddooheeJpa.match.dto.MatchNoResDto;
-import com.example.ddooheeJpa.match.dto.MatchOkResDto;
-import com.example.ddooheeJpa.match.dto.MatchingCreateResDto;
+import com.example.ddooheeJpa.match.dto.*;
 import com.example.ddooheeJpa.match.service.MatchService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -51,6 +50,13 @@ public class MatchController {
     @PostMapping("/{id}/block")
     public ResponseEntity<MatchNoResDto> matchBlock(@PathVariable("id")Long id) {
         final MatchNoResDto response = matchService.matchDelete(id);
+        return ResponseEntity.ok().body(response);
+    }
+
+    // 나에게 매칭 시도한 유저 전체 조회
+    @GetMapping("/{userGetMatched}")
+    public ResponseEntity<List<GetMatchedUserListDto>> GetMatchedList(@PathVariable("userGetMatched")Long userGetMatched) {
+        final List<GetMatchedUserListDto> response = matchService.GetMatchedList(userGetMatched);
         return ResponseEntity.ok().body(response);
     }
 }

@@ -27,4 +27,6 @@ public class UserInterest {
         this.Interest = interest;
         this.user = user;
     }
+
+
 }

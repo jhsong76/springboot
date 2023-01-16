@@ -23,4 +23,14 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
    // Optional<User> findByUserMatching
 
+    //List<User> getUsersByUserId(Long userGetMatched);
+
+//    @Query(value = "select u from User u join Match m on m.userMatching.userId = u.userId where m.userGetMatched.userId = :userGetMatched")
+//    Optional<User> findById(@Param("userGetMatched")Long userGetMatched);
+
+    @Query(value = "select u from User u join Match m on m.userMatching.userId = u.userId where m.userGetMatched.userId = :userGetMatched")
+    List<User> getUsersByUserId(@Param("userGetMatched") Long userGetMatched);
+
+
+    //long findUserMatchingByUserId(Long userGetMatched);
 }

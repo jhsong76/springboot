@@ -4,7 +4,11 @@ import com.example.ddooheeJpa.block.converter.Blockconverter;
 import com.example.ddooheeJpa.block.entity.Block;
 
 import com.example.ddooheeJpa.block.repository.BlockRepository;
+import com.example.ddooheeJpa.interest.repository.InterestRepository;
+import com.example.ddooheeJpa.like.repository.LikesRepository;
+import com.example.ddooheeJpa.user.converter.Userconverter;
 import com.example.ddooheeJpa.user.entity.User;
+import com.example.ddooheeJpa.user.entity.UserInterest;
 import com.example.ddooheeJpa.user.repository.UserRepository;
 import com.example.ddooheeJpa.match.converter.MatchConverter;
 import com.example.ddooheeJpa.match.dto.*;
@@ -17,6 +21,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
@@ -27,6 +34,9 @@ public class MatchServiceImpl implements MatchService {
     private final BlockRepository blockRepository;
     private final Blockconverter blockconverter;
     private final UserRepository userRepository;
+    private final Userconverter userconverter;
+    private final InterestRepository interestRepository;
+    private final LikesRepository likesRepository;
 
     @Transactional
     public MatchingCreateResDto matching(final long userMatching, final long userGetMatched) {
@@ -66,4 +76,25 @@ public class MatchServiceImpl implements MatchService {
         Block block = blockRepository.save(blockconverter.ReqMatchdeleteDto(match.getUserMatching(), match.getUserGetMatched()));
         return blockconverter.ResMatchNoDto(block);
     }
+
+    public List<GetMatchedUserListDto> GetMatchedList(Long userGetMatched) {
+
+//        User GetMatched = userRepository.findById(userGetMatched).get();
+//        final Match match = matchRepository.findByUserGetMatched(GetMatched);
+//        final User entity = userRepository.getReferenceById(userGetMatched);
+
+        //User GetMatched = userRepository.findById(userGetMatched).get();
+        //List<Match> userMatching = matchRepository.findUserMatchingByUserGetMatched(userGetMatched);
+
+        //List<User> user = userRepository.getUsersByUserId(userGetMatched);
+
+        //int userLike = likeRepository.CountByUser(userGetMatched);
+        //int userLike = 2;
+
+        return matchConverter.GetMatchedListResponseDto(userRepository.getUsersByUserId(userGetMatched),
+                interestRepository.getUserInterestsByUser(userGetMatched), likesRepository.countByUserGetLikes(userGetMatched));
+
+    }
+
+
 }

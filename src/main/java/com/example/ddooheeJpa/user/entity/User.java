@@ -1,6 +1,7 @@
 package com.example.ddooheeJpa.user.entity;
 
 
+import com.example.ddooheeJpa.match.entity.Match;
 import lombok.*;
 
 import javax.persistence.*;
