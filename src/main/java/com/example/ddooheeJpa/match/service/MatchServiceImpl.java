@@ -40,6 +40,7 @@ public class MatchServiceImpl implements MatchService {
     private final InterestRepository interestRepository;
     private final LikesRepository likesRepository;
 
+    // 매칭 시도
     @Transactional
     public MatchingCreateResDto matching(final long userMatching, final long userGetMatched) {
         User Matching = userRepository.findById(userMatching).get();
@@ -49,6 +50,7 @@ public class MatchServiceImpl implements MatchService {
         return matchConverter.ResCreateMatchDto(match);
     }
 
+    // 매칭 수락
     @Transactional
     public MatchOkResDto matchOk(Long id) {
         Match match = matchRepository.getById(id);
@@ -56,6 +58,7 @@ public class MatchServiceImpl implements MatchService {
         return matchConverter.ResMatchOkDto(match);
     }
 
+    // 매칭 거절
     @Transactional
     public MatchNoResDto matchNo(Long id) {
         Match match = matchRepository.getById(id);
@@ -64,12 +67,14 @@ public class MatchServiceImpl implements MatchService {
         return blockconverter.ResMatchNoDto(block);
     }
 
+    // 매칭 모두 수락
     @Transactional
     public MatchAllOkResDto matchAllOk(Long userGetMatched) {
         matchRepository.updateMatchStatusByUserGetMatched(userGetMatched);
         return matchConverter.ResMatchAllOkDto(userGetMatched);
     }
 
+    // 내가 매칭 시도한 내역 삭제
     @Transactional
     public MatchNoResDto matchDelete(Long id) {
         Match match = matchRepository.getById(id);
@@ -83,13 +88,6 @@ public class MatchServiceImpl implements MatchService {
 
         List<UserMatchList> findUser = userRepository.getUsersByUserId(userGetMatched);
         return findUser;
-
-//        List<UserMatchList> userMatchList = this.userRepository.getUsersByUserId(userGetMatched);
-//        userMatchList.forEach(
-//
-//        );
-
-        //return matchConverter.GetMatchedListResponseDto(userRepository.getUsersByUserId(userGetMatched));
 
     }
 
