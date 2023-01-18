@@ -5,10 +5,12 @@ import com.example.ddooheeJpa.block.entity.Block;
 
 import com.example.ddooheeJpa.block.repository.BlockRepository;
 import com.example.ddooheeJpa.interest.repository.InterestRepository;
+import com.example.ddooheeJpa.like.dto.ReqCreateUserLikeDto;
 import com.example.ddooheeJpa.like.repository.LikesRepository;
 import com.example.ddooheeJpa.user.converter.Userconverter;
 import com.example.ddooheeJpa.user.entity.User;
 import com.example.ddooheeJpa.user.entity.UserInterest;
+import com.example.ddooheeJpa.user.entity.UserLikes;
 import com.example.ddooheeJpa.user.repository.UserRepository;
 import com.example.ddooheeJpa.match.converter.MatchConverter;
 import com.example.ddooheeJpa.match.dto.*;
@@ -77,24 +79,20 @@ public class MatchServiceImpl implements MatchService {
         return blockconverter.ResMatchNoDto(block);
     }
 
-    public List<GetMatchedUserListDto> GetMatchedList(Long userGetMatched) {
+    public List<UserMatchList> GetMatchedList(Long userGetMatched) {
 
-//        User GetMatched = userRepository.findById(userGetMatched).get();
-//        final Match match = matchRepository.findByUserGetMatched(GetMatched);
-//        final User entity = userRepository.getReferenceById(userGetMatched);
+        List<UserMatchList> findUser = userRepository.getUsersByUserId(userGetMatched);
+        return findUser;
 
-        //User GetMatched = userRepository.findById(userGetMatched).get();
-        //List<Match> userMatching = matchRepository.findUserMatchingByUserGetMatched(userGetMatched);
+//        List<UserMatchList> userMatchList = this.userRepository.getUsersByUserId(userGetMatched);
+//        userMatchList.forEach(
+//
+//        );
 
-        //List<User> user = userRepository.getUsersByUserId(userGetMatched);
-
-        //int userLike = likeRepository.CountByUser(userGetMatched);
-        //int userLike = 2;
-
-        return matchConverter.GetMatchedListResponseDto(userRepository.getUsersByUserId(userGetMatched),
-                interestRepository.getUserInterestsByUser(userGetMatched), likesRepository.countByUserGetLikes(userGetMatched));
+        //return matchConverter.GetMatchedListResponseDto(userRepository.getUsersByUserId(userGetMatched));
 
     }
+
 
 
 }

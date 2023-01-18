@@ -11,5 +11,5 @@ public interface MatchService {
     MatchNoResDto matchNo(Long id);
     MatchAllOkResDto matchAllOk(Long userGetMatched);
     MatchNoResDto matchDelete(Long id);
-    List<GetMatchedUserListDto> GetMatchedList(Long userGetMatched);
+    List<UserMatchList> GetMatchedList(Long userGetMatched);
 }

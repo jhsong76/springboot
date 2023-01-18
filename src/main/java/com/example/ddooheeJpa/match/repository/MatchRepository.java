@@ -23,4 +23,7 @@ public interface MatchRepository extends JpaRepository<Match, Long> {
     List<Object[]> find(@Param("userGetMatched") Long userGetMatched);
     @Query("select userMatching.userId from Match where userGetMatched.userId = :userGetMatched")
     List<Match> findUserMatchingByUserGetMatched(@Param("userGetMatched")Long userGetMatched);
+
+    @Query("select count(m.userMatching.userId) from Match m where m.userGetMatched.userId = :userGetMatched")
+    long countByUserGetMatched(@Param("userGetMatched") Long userId);
 }

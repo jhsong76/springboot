@@ -1,5 +1,6 @@
 package com.example.ddooheeJpa.match.dto;
 
+import com.example.ddooheeJpa.user.entity.User;
 import com.example.ddooheeJpa.user.entity.UserInterest;
 import lombok.*;
 
@@ -10,9 +11,6 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 public class GetMatchedUserListDto {
-    private String userProfilImg;
-    private String userNickName;
-    private String userMajorName;
-    private List<String> userInterests;
-    private List<Long> userLikes;
+    private List<UserInterest>  userInterests;
+    //private List<Long> userLikes;
 }

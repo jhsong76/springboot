@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface InterestRepository extends JpaRepository<UserInterest, Long> {
     //@Query("select i.Interest from UserInterest i where i.user = :userGetMatched")
-    @Query(value = "select i.Interest from UserInterest i join Match m on m.userMatching.userId = i.user.userId " +
-            "where m.userGetMatched.userId = :userGetMatched")
-    List<String> getUserInterestsByUser(@Param("userGetMatched") Long userGetMatched);
+    @Query(value = "select group_concat(i.interest), i.user_id from user_interest i join user_match m on m.user_matching = i.user_id\n" +
+            "where m.user_get_matched = ? GROUP BY m.user_matching", nativeQuery = true)
+    List<String> getUserInterestsByUser(@Param("user_get_matched") Long id);
 }

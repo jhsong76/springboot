@@ -2,9 +2,12 @@ package com.example.ddooheeJpa.user.entity;
 
 
 import com.example.ddooheeJpa.match.entity.Match;
+import com.example.ddooheeJpa.mbti.entity.UserMbti;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -12,6 +15,7 @@ import java.util.List;
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+
 public class User {
 
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,16 +29,41 @@ public class User {
     private String userMajorName;
     private String userStudentNum;
     private int userGender;
-    private String userMbti;
+    //private String userMbti;
     private String userPersonality;
 
     private String userInfo;
     private String userProfileImg;
 
+
+    @JsonIgnore
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private List<UserInterest> userInterests;
+    private List<UserInterest> userInterests = new ArrayList<>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user",fetch = FetchType.LAZY)
+    private List<UserPersonality> userPesonalitys = new ArrayList<>();
+
+    @OneToOne
+    @JoinColumn(name = "userMbtiIdx")
+    private UserMbti userMbti;
+//    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+//    //@JoinColumn(name = "id", nullable = false)
+//    private UserLikes userLikesIdx;
+//
+    //@ManyToOne(fetch = FetchType.LAZY, optional = false)
+//    @JoinColumn(name = "userMbtiIdx",  nullable = false)
+//    private UserMbti userMbtiIdx;
+
+//    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+//    //@JoinColumn(name = "id",  nullable = false)
+//    private Match userMatchIdx;
 
 
+
+
+//    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+//    private List<String> userinterests;
 
     //@OneToMany(mappedBy = "Match")
     //private List<Match> matches = new ArrayList<>();

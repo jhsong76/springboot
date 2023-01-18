@@ -13,7 +13,6 @@ public class Dto {
     private String userMajorName;
     private String userStudentNum;
     private int userGender;
-    private String userMbti;
     private String userInfo;
     private String userProfileImg;
 }

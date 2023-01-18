@@ -61,19 +61,21 @@ public class MatchConverter {
 //    }
 
 
-    public List<GetMatchedUserListDto> GetMatchedListResponseDto(final List<User> users, final List<String> userInterests, final List<Long> userLikes) {
+    public List<GetMatchedUserListDto> GetMatchedListResponseDto(final List<GetMatchedUserListDto> users) {
         return users
                 .stream()
                 .map(user -> GetMatchedUserListDto.builder()
-                        .userNickName(user.getUserNickName())
-                        .userMajorName(user.getUserMajorName())
-                        .userProfilImg(user.getUserProfileImg())
-                        .userLikes(userLikes)
-                        .userInterests(userInterests)
+
+                        .userInterests(user.getUserInterests())
                 .build())
                 .collect(Collectors.toList());
     }
 
+    public MatchDto toDto(final Match entity) {
+        return MatchDto.builder()
+                .UserGetMatched(entity.getId())
+                .build();
+    }
 
 
 }

@@ -3,12 +3,15 @@ package com.example.ddooheeJpa.user.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "userInterest")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
+
 public class UserInterest {
     @Id
     @Column(name ="userInterestIdx")
@@ -22,11 +25,9 @@ public class UserInterest {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @Builder
-    public UserInterest(final String interest, final User user) {
-        this.Interest = interest;
-        this.user = user;
-    }
+//    @OneToMany(mappedBy = "userInterest" )
+//    private List<UserInterest> userInterestList = new ArrayList<UserInterest>();
+
 
 
 }

@@ -55,8 +55,8 @@ public class MatchController {
 
     // 나에게 매칭 시도한 유저 전체 조회
     @GetMapping("/{userGetMatched}")
-    public ResponseEntity<List<GetMatchedUserListDto>> GetMatchedList(@PathVariable("userGetMatched")Long userGetMatched) {
-        final List<GetMatchedUserListDto> response = matchService.GetMatchedList(userGetMatched);
+    public ResponseEntity<List<UserMatchList>> GetMatchedList(@PathVariable("userGetMatched")Long userGetMatched) {
+        final List<UserMatchList> response = matchService.GetMatchedList(userGetMatched);
         return ResponseEntity.ok().body(response);
     }
 }

@@ -13,7 +13,10 @@ import java.util.List;
 public interface LikesRepository extends JpaRepository <UserLikes, Long> {
 
 
-    @Query(value = "select count(s.id) from UserLikes s join Match m on m.userMatching.userId = s.userGetLikes.userId " +
-            "where m.userGetMatched.userId = :userGetMatched GROUP BY s.userGetLikes")
-    List<Long> countByUserGetLikes(@Param("userGetMatched") Long userGetMatched);
+//    @Query(value = "select count(s.id) from UserLikes s join Match m on m.userMatching.userId = s.userGetLikes.userId " +
+//            "where m.userGetMatched.userId = :userGetMatched GROUP BY s.userGetLikes")
+//    List<Long> countByUserGetLikes(@Param("userGetMatched") Long userGetMatched);
+//
+    @Query("select count(s.userGetLikes.userId) from UserLikes s where s.userGetLikes.userId = :userGetLikes")
+    long countByUserGetLikes(@Param("userGetLikes") Long userId);
 }

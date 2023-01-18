@@ -19,13 +19,14 @@ public class Userconverter {
                 .userMajorName(entity.getUserMajorName())
                 .userStudentNum(entity.getUserStudentNum())
                 .userGender(entity.getUserGender())
-                .userMbti(entity.getUserMbti())
+
                 .userInfo(entity.getUserInfo())
                 .userProfileImg(entity.getUserProfileImg())
                 .build();
     }
 
-    public UserResponseDto toResponseDto(final Dto entity, final List<String> userInterests) {
+    public UserResponseDto toResponseDto(final Dto entity, final List<String> userInterests, final List<String> userPersonalitys
+                                         ) {
         return UserResponseDto.builder()
                 .userId(entity.getUserId())
                 .userPhoneNum(entity.getUserPhoneNum())
@@ -33,10 +34,16 @@ public class Userconverter {
                 .userMajorName(entity.getUserMajorName())
                 .userStudentNum(entity.getUserStudentNum())
                 .userGender(entity.getUserGender())
-                .userMbti(entity.getUserMbti())
                 .userInfo(entity.getUserInfo())
                 .userProfileImg(entity.getUserProfileImg())
                 .userInterests(userInterests)
+                .userPersonalitys(userPersonalitys)
+                //.userMbti(userMbti)
+                //.userMbti(userMbti)
+////                .userLikes(userLikes)
+//                .userMatch(userMatch)
                 .build();
     }
+
+
 }

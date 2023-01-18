@@ -1,5 +1,6 @@
-package com.example.ddooheeJpa.user.entity;
+package com.example.ddooheeJpa.mbti.entity;
 
+import com.example.ddooheeJpa.user.entity.User;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,24 +12,23 @@ import java.time.LocalDateTime;
 import static javax.persistence.FetchType.LAZY;
 
 @Entity
-@Table(name = "UserPersonality")
-@Getter @Setter
+@Table(name = "UserMbti")
+@Getter
+@Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class UserPersonality {
+public class UserMbti {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "userPersonalityIdx")
+    @Column(name = "userMbtiIdx")
     private Long id;
 
     @ManyToOne(fetch = LAZY)
-    @JoinColumn(name = "userIdx")
+    @JoinColumn(name = "userId")
     private User userIdx;
 
-    private String personality;
+    private String mbti;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "user_id")
-    private User user;
+
 
     private LocalDateTime createdAt;
 

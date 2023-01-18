@@ -1,5 +1,6 @@
 package com.example.ddooheeJpa.user.dto;
 
+import com.example.ddooheeJpa.user.entity.User;
 import lombok.*;
 
 import java.util.List;
@@ -15,8 +16,13 @@ public class UserResponseDto {
     private String userMajorName;
     private String userStudentNum;
     private int userGender;
-    private String userMbti;
+    ;
     private String userInfo;
     private String userProfileImg;
     private List<String> userInterests;
+    private List<String> userPersonalitys;
+//    private User userLikes;
+//    private User userMatch;
+    private String userMbti;
+
 }
