@@ -14,11 +14,10 @@ public class UserController {
 
     private final UserService userService;
 
+    // 유저 정보 상세 조회
     @GetMapping("/{id}")
     public ResponseEntity<UserResponseDto> findUserById(@PathVariable("id")final Long userId) {
-
         UserResponseDto response = userService.findById(userId);
-
         return ResponseEntity.ok().body(response);
     }
 

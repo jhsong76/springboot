@@ -9,8 +9,6 @@ public interface UserMatchList {
 
 
     List<UserInterest> getUserInterests();
-    interface Interests{
-        String getInterest();
-    }
+    int getUserLikes();
 
 }

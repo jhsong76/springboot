@@ -14,12 +14,12 @@ public class Userconverter {
     public Dto toDto(final User entity) {
         return Dto.builder()
                 .userId(entity.getUserId())
-                .userPhoneNum(entity.getUserPhoneNum())
+                //.userPhoneNum(entity.getUserPhoneNum())
                 .userNickName(entity.getUserNickName())
                 .userMajorName(entity.getUserMajorName())
                 .userStudentNum(entity.getUserStudentNum())
                 .userGender(entity.getUserGender())
-
+                .userMbti(entity.getUserMbti())
                 .userInfo(entity.getUserInfo())
                 .userProfileImg(entity.getUserProfileImg())
                 .build();
@@ -29,15 +29,17 @@ public class Userconverter {
                                          ) {
         return UserResponseDto.builder()
                 .userId(entity.getUserId())
-                .userPhoneNum(entity.getUserPhoneNum())
+                //.userPhoneNum(entity.getUserPhoneNum())
                 .userNickName(entity.getUserNickName())
                 .userMajorName(entity.getUserMajorName())
                 .userStudentNum(entity.getUserStudentNum())
                 .userGender(entity.getUserGender())
+                .userMbti(entity.getUserMbti())
                 .userInfo(entity.getUserInfo())
                 .userProfileImg(entity.getUserProfileImg())
                 .userInterests(userInterests)
                 .userPersonalitys(userPersonalitys)
+                //.userLikes(userLikes)
                 //.userMbti(userMbti)
                 //.userMbti(userMbti)
 ////                .userLikes(userLikes)

@@ -1,8 +1,5 @@
 package com.example.ddooheeJpa.user.entity;
 
-
-import com.example.ddooheeJpa.match.entity.Match;
-import com.example.ddooheeJpa.mbti.entity.UserMbti;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
@@ -18,7 +15,7 @@ import java.util.List;
 
 public class User {
 
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id", insertable = false, updatable = false)
     private Long userId;
 
@@ -29,7 +26,7 @@ public class User {
     private String userMajorName;
     private String userStudentNum;
     private int userGender;
-    //private String userMbti;
+    private String userMbti;
     private String userPersonality;
 
     private String userInfo;
@@ -44,9 +41,9 @@ public class User {
     @OneToMany(mappedBy = "user",fetch = FetchType.LAZY)
     private List<UserPersonality> userPesonalitys = new ArrayList<>();
 
-    @OneToOne
-    @JoinColumn(name = "userMbtiIdx")
-    private UserMbti userMbti;
+//    @OneToOne
+//    @JoinColumn(name = "userMbtiIdx")
+//    private UserMbti userMbti;
 //    @ManyToOne(fetch = FetchType.LAZY, optional = false)
 //    //@JoinColumn(name = "id", nullable = false)
 //    private UserLikes userLikesIdx;
@@ -58,8 +55,6 @@ public class User {
 //    @ManyToOne(fetch = FetchType.LAZY, optional = false)
 //    //@JoinColumn(name = "id",  nullable = false)
 //    private Match userMatchIdx;
-
-
 
 
 //    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)

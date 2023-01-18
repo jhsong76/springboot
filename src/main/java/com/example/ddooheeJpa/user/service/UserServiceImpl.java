@@ -5,11 +5,7 @@ import com.example.ddooheeJpa.like.dto.LikeDto;
 import com.example.ddooheeJpa.like.dto.ReqCreateUserLikeDto;
 import com.example.ddooheeJpa.like.repository.LikesRepository;
 import com.example.ddooheeJpa.match.converter.MatchConverter;
-import com.example.ddooheeJpa.match.dto.MatchDto;
-import com.example.ddooheeJpa.match.entity.Match;
-import com.example.ddooheeJpa.mbti.converter.MbtiConverter;
-import com.example.ddooheeJpa.mbti.dto.MbtiDto;
-import com.example.ddooheeJpa.mbti.entity.UserMbti;
+
 import com.example.ddooheeJpa.user.converter.Userconverter;
 
 import com.example.ddooheeJpa.user.dto.UserResponseDto;
@@ -35,31 +31,23 @@ public class UserServiceImpl implements UserService {
     private final LikesRepository likesRepository;
     private final LikeConverter likeConverter;
     private final MatchConverter matchConverter;
-    private final MbtiConverter mbtiConverter;
+    //private final MbtiConverter mbtiConverter;
 
 
     @Override
     public UserResponseDto findById(final Long userId) {
 
-//        UserResponseDto dto = userRepository.findById(userId)
-//                .map(converter::toDto)
-//                .orElseThrow(() -> new BaseException(NOT_USER));
-//
-//        System.out.println(dto);
-//        return dto;
-
-        User user = userRepository.findUserByUserId(userId);
-
-
+        //User user = userRepository.findUserByUserId(userId);
 
         final User entity = userRepository.getReferenceById(userId);
-        return getUserResponseDto(entity);
+        final long userLikes = likesRepository.countByUserGetLikes(userId);
+        return getUserResponseDto(entity, userLikes);
 
 
 
     }
 
-    private UserResponseDto getUserResponseDto(final User entity) {
+    private UserResponseDto getUserResponseDto(final User entity, final long userLikes) {
         return converter.toResponseDto(
                 converter.toDto(entity),
                 entity.getUserInterests()
@@ -71,10 +59,6 @@ public class UserServiceImpl implements UserService {
                 .stream()
                 .map(UserPersonality::getPersonality)
                 .collect(Collectors.toList()));
-                //entity.getUserMbti().getMbti());
-//                entity.getUserLikesIdx().getUserGetLikes(),
-//                entity.getUserMatchIdx().getUserGetMatched(),
-
 
     }
 
@@ -84,7 +68,6 @@ public class UserServiceImpl implements UserService {
         User Get = userRepository.findById(userGetLike).get();
         final UserLikes userLikes = likesRepository
                 .save(likeConverter.ReqCreateUserLikeDto(Give, Get));
-        //System.out.println(U);
         return likeConverter.ResCreateUserLikeDto(userLikes);
     }
 
