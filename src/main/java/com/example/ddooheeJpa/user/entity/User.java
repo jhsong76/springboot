@@ -32,6 +32,12 @@ public class User {
     private String userInfo;
     private String userProfileImg;
 
+    @Enumerated(EnumType.STRING)
+    private UserNotification userNotification; // 유저 알림 설정 상태 [INACTIVE, ACTIVE]
+
+    @Enumerated(EnumType.STRING)
+    private UserStatusForMyInfo userStatusForMyInfo; // 유저 정보 활성화 삭제 [INACTIVE, ACTIVE]
+
     @Convert(converter=BooleanToYNConverter.class)
     private boolean gradStatus;
 
