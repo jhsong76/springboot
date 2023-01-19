@@ -3,6 +3,7 @@ package com.example.ddooheeJpa.block.converter;
 
 import com.example.ddooheeJpa.block.entity.Block;
 import com.example.ddooheeJpa.block.entity.userBlockStatus;
+import com.example.ddooheeJpa.match.dto.MatchResDto;
 import com.example.ddooheeJpa.user.entity.User;
 import com.example.ddooheeJpa.match.dto.MatchNoResDto;
 import org.springframework.stereotype.Component;
@@ -18,8 +19,8 @@ public class Blockconverter {
                 .build();
     }
 
-    public MatchNoResDto ResMatchNoDto(Block block){
-        return MatchNoResDto.builder()
+    public MatchResDto ResMatchNoDto(Block block){
+        return MatchResDto.builder()
                 .id(block.getId())
                 .build();
     }

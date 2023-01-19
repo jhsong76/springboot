@@ -41,26 +41,6 @@ public class User {
     @OneToMany(mappedBy = "user",fetch = FetchType.LAZY)
     private List<UserPersonality> userPesonalitys = new ArrayList<>();
 
-//    @OneToOne
-//    @JoinColumn(name = "userMbtiIdx")
-//    private UserMbti userMbti;
-//    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-//    //@JoinColumn(name = "id", nullable = false)
-//    private UserLikes userLikesIdx;
-//
-    //@ManyToOne(fetch = FetchType.LAZY, optional = false)
-//    @JoinColumn(name = "userMbtiIdx",  nullable = false)
-//    private UserMbti userMbtiIdx;
 
-//    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-//    //@JoinColumn(name = "id",  nullable = false)
-//    private Match userMatchIdx;
-
-
-//    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-//    private List<String> userinterests;
-
-    //@OneToMany(mappedBy = "Match")
-    //private List<Match> matches = new ArrayList<>();
 
 }

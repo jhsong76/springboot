@@ -1,12 +1,10 @@
 package com.example.ddooheeJpa.match.converter;
 
 import com.example.ddooheeJpa.match.dto.*;
-import com.example.ddooheeJpa.user.dto.Dto;
 import com.example.ddooheeJpa.user.entity.User;
 import com.example.ddooheeJpa.match.entity.Match;
 import com.example.ddooheeJpa.match.entity.status;
 import com.example.ddooheeJpa.match.entity.userMatchStatus;
-import com.example.ddooheeJpa.user.entity.UserInterest;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -23,14 +21,14 @@ public class MatchConverter {
                 .build();
     }
 
-    public MatchingCreateResDto ResCreateMatchDto(Match match) {
-        return MatchingCreateResDto.builder()
+    public MatchResDto ResCreateMatchDto(Match match) {
+        return MatchResDto.builder()
                 .id(match.getId())
                 .build();
     }
 
-    public MatchOkResDto ResMatchOkDto(Match match) {
-        return MatchOkResDto.builder()
+    public MatchResDto ResMatchOkDto(Match match) {
+        return MatchResDto.builder()
                 .id(match.getId())
                 .build();
     }
@@ -40,25 +38,6 @@ public class MatchConverter {
                 .userGetMatched(userGetMatched)
                 .build();
     }
-
-//    public Dto toDto(final User entity) {
-//        return Dto.builder()
-//                .userId(entity.getUserId())
-//                .userNickName(entity.getUserNickName())
-//                .userMajorName(entity.getUserMajorName())
-//                .userPhoneNum(entity.getUserProfileImg())
-//                .build();
-//    }
-//
-//    public GetMatchedUserListDto toResponseDto(final Dto entity, final List<String> userInterests, int userLike){
-//        return GetMatchedUserListDto.builder()
-//                .userProfilImg(entity.getUserProfileImg())
-//                .userNickName(entity.getUserNickName())
-//                .userMajorName(entity.getUserMajorName())
-//                .userInterests(userInterests)
-//                .userLike(userLike)
-//                .build();
-//    }
 
 
     public List<GetMatchedUserListDto> GetMatchedListResponseDto(final List<GetMatchedUserListDto> users) {

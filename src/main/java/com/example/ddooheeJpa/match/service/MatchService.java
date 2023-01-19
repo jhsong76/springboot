@@ -6,10 +6,10 @@ import com.example.ddooheeJpa.match.dto.*;
 import java.util.List;
 
 public interface MatchService {
-    MatchingCreateResDto matching(long userMatching, long userGetMatched);
-    MatchOkResDto matchOk(Long id);
-    MatchNoResDto matchNo(Long id);
+    MatchResDto matching(long userMatching, long userGetMatched);
+    MatchResDto matchOk(Long id);
+    MatchResDto matchNo(Long id);
     MatchAllOkResDto matchAllOk(Long userGetMatched);
-    MatchNoResDto matchDelete(Long id);
+    MatchResDto matchDelete(Long id);
     List<UserMatchList> GetMatchedList(Long userGetMatched);
 }

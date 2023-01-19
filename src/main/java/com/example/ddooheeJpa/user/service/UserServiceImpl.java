@@ -37,7 +37,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserResponseDto findById(final Long userId) {
 
-        //User user = userRepository.findUserByUserId(userId);
 
         final User entity = userRepository.getReferenceById(userId);
         final long userLikes = likesRepository.countByUserGetLikes(userId);
