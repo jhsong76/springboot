@@ -20,4 +20,12 @@ public class PagingRepository {
                 .setMaxResults(limit)
                 .getResultList();
     }
+
+    public List<User> findAllByGradStatusFalse(int offset, int limit){
+        return em.createQuery(
+                        "select u from User u where u.gradStatus = true", User.class)
+                .setFirstResult(offset)
+                .setMaxResults(limit)
+                .getResultList();
+    }
 }

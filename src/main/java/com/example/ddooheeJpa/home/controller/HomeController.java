@@ -27,8 +27,8 @@ public class HomeController {
     private final PagingRepository pagingRepository;
 
     // 재학생 유저 리스트 조회
-    @GetMapping("/student")
-    public ResponseEntity<List<UserStudentDto>> StudentList(@RequestParam(value = "offset", defaultValue = "0") int offset,
+    @GetMapping("/student/true")
+    public ResponseEntity<List<UserStudentDto>> StudentListTrue(@RequestParam(value = "offset", defaultValue = "0") int offset,
                                                             @RequestParam(value = "limit", defaultValue = "20")int limit) {
 
             List<User> users = pagingRepository.findAllByGradStatusTrue(offset, limit);
@@ -36,6 +36,19 @@ public class HomeController {
                     .map(u -> new UserStudentDto(u))
                     .collect(Collectors.toList());
             return ResponseEntity.ok().body(result);
+
+    }
+
+    // 졸업생 유저 리스트 조회
+    @GetMapping("/student/false")
+    public ResponseEntity<List<UserStudentDto>> StudentListFalse(@RequestParam(value = "offset", defaultValue = "0") int offset,
+                                                            @RequestParam(value = "limit", defaultValue = "20")int limit) {
+
+        List<User> users = pagingRepository.findAllByGradStatusFalse(offset, limit);
+        List<UserStudentDto> result = users.stream()
+                .map(u -> new UserStudentDto(u))
+                .collect(Collectors.toList());
+        return ResponseEntity.ok().body(result);
 
     }
 }
