@@ -32,6 +32,9 @@ public class User {
     private String userInfo;
     private String userProfileImg;
 
+    @Convert(converter=BooleanToYNConverter.class)
+    private boolean gradStatus;
+
 
     @JsonIgnore
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
@@ -41,6 +44,8 @@ public class User {
     @OneToMany(mappedBy = "user",fetch = FetchType.LAZY)
     private List<UserPersonality> userPesonalitys = new ArrayList<>();
 
-
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "id", nullable = false)
+    private UserLikes userLikeCount;
 
 }

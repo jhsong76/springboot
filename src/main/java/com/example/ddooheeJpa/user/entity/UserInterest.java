@@ -25,9 +25,5 @@ public class UserInterest {
     @JoinColumn(name = "user_id")
     private User user;
 
-//    @OneToMany(mappedBy = "userInterest" )
-//    private List<UserInterest> userInterestList = new ArrayList<UserInterest>();
-
-
 
 }

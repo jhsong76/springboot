@@ -5,6 +5,7 @@ import com.example.ddooheeJpa.match.dto.*;
 import com.example.ddooheeJpa.match.service.MatchService;
 import com.example.ddooheeJpa.user.entity.User;
 import com.example.ddooheeJpa.user.entity.UserInterest;
+import com.example.ddooheeJpa.user.entity.UserLikes;
 import com.example.ddooheeJpa.user.entity.UserPersonality;
 import com.example.ddooheeJpa.user.repository.UserRepository;
 import lombok.Data;
@@ -84,6 +85,7 @@ public class MatchController {
         private List<UserInterestDto> userInterests;
         private List<UserPersonalityDto> userPesonalitys;
 
+
         public UserGetMatchList(User user) {
             userId = user.getUserId();
             userNickName = user.getUserNickName();
@@ -99,12 +101,13 @@ public class MatchController {
             userPesonalitys = user.getUserPesonalitys().stream()
                     .map(userPersonality -> new UserPersonalityDto(userPersonality))
                     .collect(Collectors.toList());
+
         }
 
     }
 
     @Data
-    static class UserInterestDto{
+    public static class UserInterestDto{
         private String Interest;
 
         public UserInterestDto(UserInterest userInterest) {
@@ -120,4 +123,6 @@ public class MatchController {
             personality = userPersonality.getPersonality();
         }
     }
+
+
 }
