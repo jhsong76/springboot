@@ -5,6 +5,7 @@ import com.example.ddooheeJpa.block.dto.BlockDto;
 import com.example.ddooheeJpa.block.entity.UserBlock;
 import com.example.ddooheeJpa.block.mapper.BlockMapper;
 import com.example.ddooheeJpa.block.repository.BlockRepository;
+import com.example.ddooheeJpa.block.service.BlockService;
 import com.example.ddooheeJpa.common.exception.LInkyBussinessException;
 import com.example.ddooheeJpa.match.converter.MatchConverter;
 import com.example.ddooheeJpa.match.dto.MatchDto;
@@ -20,8 +21,11 @@ import com.example.ddooheeJpa.user.entity.User;
 import com.example.ddooheeJpa.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -34,6 +38,7 @@ public class MatchService {
     private final MatchRepository matchRepository;
     private final BlockRepository blockRepository;
     private final BlockConverter blockconverter;
+    private final BlockService blockService;
     private final UserRepository userRepository;
 
     // 매칭 시도
@@ -128,6 +133,13 @@ public class MatchService {
         List<UserListDto> dto = UserMapper.INSTANCE.entityToDtoList(users);
 
         return dto;
+    }
+
+    // 유저 차단
+    @PostMapping("{userGiveBlock}/{userGetBlocked}/block")
+    public ResponseEntity<BlockDto> UserBlock(@PathVariable("userGiveBlock") long userGiveBlock, @PathVariable("userGetBlocked") long userGetBlocked) {
+        BlockDto response = blockService.userBlock(userGiveBlock, userGetBlocked);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
 }
