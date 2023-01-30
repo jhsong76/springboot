@@ -3,6 +3,9 @@ package com.example.ddooheeJpa.match.service;
 import com.example.ddooheeJpa.common.exception.LInkyBussinessException;
 import com.example.ddooheeJpa.match.converter.MatchConverter;
 import com.example.ddooheeJpa.match.dto.MatchDto;
+import com.example.ddooheeJpa.match.entity.UserMatch;
+import com.example.ddooheeJpa.match.entity.userMatchStatus;
+import com.example.ddooheeJpa.match.mapper.MatchMapper;
 import com.example.ddooheeJpa.match.repository.MatchRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -26,6 +29,19 @@ public class MatchService {
                 .orElseThrow(() -> new LInkyBussinessException("해당 유저가 존재하지 않습니다.", HttpStatus.BAD_REQUEST));
 
         UserMatch entity = matchRepository.save(matchConverter.tryMatching(Matching, GetMatched));
+        MatchDto dto = MatchMapper.INSTANCE.entityToDto(entity);
+
+        return dto;
+    }
+
+    // 매칭 수락
+    @Transactional
+    public MatchDto matchOk(long id) {
+
+        UserMatch entity = matchRepository.findById(id)
+                .orElseThrow(() -> new LInkyBussinessException("해당 연결내역이 존재하지 않습니다.", HttpStatus.BAD_REQUEST));
+
+        entity.update(userMatchStatus.ACTIVE);
         MatchDto dto = MatchMapper.INSTANCE.entityToDto(entity);
 
         return dto;
