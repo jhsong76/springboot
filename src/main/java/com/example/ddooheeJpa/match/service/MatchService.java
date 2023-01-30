@@ -7,6 +7,7 @@ import com.example.ddooheeJpa.block.mapper.BlockMapper;
 import com.example.ddooheeJpa.block.repository.BlockRepository;
 import com.example.ddooheeJpa.block.service.BlockService;
 import com.example.ddooheeJpa.common.exception.LInkyBussinessException;
+import com.example.ddooheeJpa.home.repository.PagingRepository;
 import com.example.ddooheeJpa.match.converter.MatchConverter;
 import com.example.ddooheeJpa.match.dto.MatchDto;
 import com.example.ddooheeJpa.match.dto.MatchListDto;
@@ -40,6 +41,7 @@ public class MatchService {
     private final BlockConverter blockconverter;
     private final BlockService blockService;
     private final UserRepository userRepository;
+    private final PagingRepository pagingRepository;
 
     // 매칭 시도
     @Transactional
@@ -140,6 +142,22 @@ public class MatchService {
     public ResponseEntity<BlockDto> UserBlock(@PathVariable("userGiveBlock") long userGiveBlock, @PathVariable("userGetBlocked") long userGetBlocked) {
         BlockDto response = blockService.userBlock(userGiveBlock, userGetBlocked);
         return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    // 매칭 내역 리스트 조회 (매칭 홈) -> 재학생 리스트
+    public List<UserListDto> TrueList(int offset, int limit) {
+        List<User> userList = pagingRepository.findAllByGradStatusTrue(offset, limit);
+        List<UserListDto> listdto = UserMapper.INSTANCE.entityToDtoList(userList);
+
+        return listdto;
+    }
+
+    // 매칭 내역 리스트 조회 (매칭 홈) -> 졸업생 리스트
+    public List<UserListDto> FalseList(int offset, int limit) {
+        List<User> userList = pagingRepository.findAllByGradStatusFalse(offset, limit);
+        List<UserListDto> listdto = UserMapper.INSTANCE.entityToDtoList(userList);
+
+        return listdto;
     }
 
 }

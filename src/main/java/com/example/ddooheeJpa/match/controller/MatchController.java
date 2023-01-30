@@ -10,7 +10,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
@@ -67,5 +69,15 @@ public class MatchController {
         List<UserListDto> response = matchService.MatchingList(userMatching);
         return ResponseEntity.ok().body(response);
 
+    }
+    // 매칭 내역 리스트 조회 (매칭 홈)
+    @GetMapping("")
+    public ResponseEntity<Map<String, List<UserListDto>>> getDoubleList(@RequestParam(value = "offset", defaultValue = "0")int offset,
+                                                                        @RequestParam(value = "limit", defaultValue = "5")int limit) {
+        Map<String, List<UserListDto>> response = new HashMap<>();
+        response.put("재학생 유저 리스트", matchService.TrueList(offset, limit));
+        response.put("졸업생 유저 리스트", matchService.FalseList(offset, limit));
+
+        return ResponseEntity.ok().body(response);
     }
 }
