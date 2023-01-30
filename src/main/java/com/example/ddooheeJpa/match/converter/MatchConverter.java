@@ -1,5 +1,6 @@
 package com.example.ddooheeJpa.match.converter;
 
+import com.example.ddooheeJpa.match.dto.MatchListDto;
 import com.example.ddooheeJpa.match.entity.UserMatch;
 import com.example.ddooheeJpa.match.entity.status;
 import com.example.ddooheeJpa.match.entity.userMatchStatus;
@@ -13,6 +14,11 @@ public class MatchConverter {
                 .userGetMatched(userGetMatched)
                 .userMatchStatus(userMatchStatus.INACTIVE)
                 .status(status.ACTIVE)
+                .build();
+    }
+    public MatchListDto MatchAllokResponseDto(long userGetMatched) {
+        return MatchListDto.builder()
+                .userGetMatched(userGetMatched)
                 .build();
     }
 }

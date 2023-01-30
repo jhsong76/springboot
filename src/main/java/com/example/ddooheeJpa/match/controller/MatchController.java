@@ -2,6 +2,7 @@ package com.example.ddooheeJpa.match.controller;
 
 import com.example.ddooheeJpa.block.dto.BlockDto;
 import com.example.ddooheeJpa.match.dto.MatchDto;
+import com.example.ddooheeJpa.match.dto.MatchListDto;
 import com.example.ddooheeJpa.match.service.MatchService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -31,6 +32,13 @@ public class MatchController {
     @PostMapping("/{id}")
     public ResponseEntity<BlockDto> matchNo(@PathVariable("id") long id) {
         BlockDto response = matchService.matchNo(id);
+        return ResponseEntity.ok().body(response);
+    }
+
+    // 모든 매칭 수락
+    @PatchMapping("/{userGetMatched}/all")
+    public ResponseEntity<MatchListDto> matckAllOk(@PathVariable("userGetMatched") long userGetMatched) {
+        MatchListDto response = matchService.matchAllOk(userGetMatched);
         return ResponseEntity.ok().body(response);
     }
 }

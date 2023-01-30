@@ -6,6 +6,7 @@ import com.example.ddooheeJpa.block.mapper.BlockMapper;
 import com.example.ddooheeJpa.common.exception.LInkyBussinessException;
 import com.example.ddooheeJpa.match.converter.MatchConverter;
 import com.example.ddooheeJpa.match.dto.MatchDto;
+import com.example.ddooheeJpa.match.dto.MatchListDto;
 import com.example.ddooheeJpa.match.entity.UserMatch;
 import com.example.ddooheeJpa.match.entity.status;
 import com.example.ddooheeJpa.match.entity.userMatchStatus;
@@ -65,6 +66,19 @@ public class MatchService {
         UserBlock block = blockRepository.save(blockconverter.block(entity.getUserGetMatched(), entity.getUserMatching()));
         BlockDto dto = BlockMapper.INSTANCE.entityToDto(block);
         return dto;
+    }
+
+    // 매칭 모두 수락
+    @Transactional
+    public MatchListDto matchAllOk(Long userGetMatched) {
+
+        userRepository.findById(userGetMatched)
+                .orElseThrow(() -> new LInkyBussinessException("해당 유저가 존재하지 않습니다.", HttpStatus.BAD_REQUEST));
+
+        matchRepository.updateUserByUserGetMatched(userGetMatched);
+        MatchListDto match = matchConverter.MatchAllokResponseDto(userGetMatched);
+
+        return match;
     }
 
 }
