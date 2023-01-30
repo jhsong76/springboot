@@ -1,11 +1,12 @@
 package com.example.ddooheeJpa.user.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.linkyB.backend.common.domain.BaseEntity;
-import com.linkyB.backend.filter.entity.UserFilter;
-import com.linkyB.backend.filter.entity.UserGradeForFilter;
-import com.linkyB.backend.filter.entity.UserMajorForFilter;
-import com.linkyB.backend.filter.entity.UserMbtiForFilter;
+import com.example.ddooheeJpa.common.domain.BaseEntity;
+import com.example.ddooheeJpa.filter.entity.UserGenderForFilter;
+import com.example.ddooheeJpa.filter.entity.UserGradeForFilter;
+import com.example.ddooheeJpa.filter.entity.UserMajorForFilter;
+import com.example.ddooheeJpa.filter.entity.UserMbtiForFilter;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -17,6 +18,7 @@ import static javax.persistence.FetchType.LAZY;
 
 @Entity
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Table(name = "User")
 @EntityListeners(AuditingEntityListener.class)
@@ -33,7 +35,7 @@ public class User extends BaseEntity {
     private String SchoolName;
     private String userMajorName;
     private String userStudentNum;
-    private int userGender;
+    private String userGender;
     private String userMbti;
 
     private String userInfo;
@@ -69,8 +71,8 @@ public class User extends BaseEntity {
     private List<UserMbtiForFilter> userMbtiForFilters;
 
     @JsonIgnore
-    @OneToOne
-    private UserFilter blockedGender;
+    @OneToMany(mappedBy = "user", fetch = LAZY)
+    private List<UserGenderForFilter> userGenderForFilters;
     private int userLikeCount;
     private int userMatchingCount;
 

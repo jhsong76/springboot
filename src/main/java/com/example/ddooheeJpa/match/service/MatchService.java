@@ -1,11 +1,10 @@
 package com.example.ddooheeJpa.match.service;
 
-import com.example.ddooheeJpa.block.converter.BlockConverter;
+import com.example.ddooheeJpa.block.converter.Blockconverter;
 import com.example.ddooheeJpa.block.dto.BlockDto;
 import com.example.ddooheeJpa.block.entity.UserBlock;
 import com.example.ddooheeJpa.block.mapper.BlockMapper;
 import com.example.ddooheeJpa.block.repository.BlockRepository;
-import com.example.ddooheeJpa.block.service.BlockService;
 import com.example.ddooheeJpa.common.exception.LInkyBussinessException;
 import com.example.ddooheeJpa.home.repository.PagingRepository;
 import com.example.ddooheeJpa.match.converter.MatchConverter;
@@ -16,17 +15,14 @@ import com.example.ddooheeJpa.match.entity.status;
 import com.example.ddooheeJpa.match.entity.userMatchStatus;
 import com.example.ddooheeJpa.match.mapper.MatchMapper;
 import com.example.ddooheeJpa.match.repository.MatchRepository;
-import com.example.ddooheeJpa.user.Mapper.UserMapper;
 import com.example.ddooheeJpa.user.dto.UserListDto;
 import com.example.ddooheeJpa.user.entity.User;
+import com.example.ddooheeJpa.user.mapper.UserMapper;
 import com.example.ddooheeJpa.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -35,12 +31,11 @@ import java.util.List;
 @Transactional(readOnly = true)
 public class MatchService {
 
-    private final MatchConverter matchConverter;
     private final MatchRepository matchRepository;
-    private final BlockRepository blockRepository;
-    private final BlockConverter blockconverter;
-    private final BlockService blockService;
     private final UserRepository userRepository;
+    private final MatchConverter matchConverter;
+    private final BlockRepository blockRepository;
+    private final Blockconverter blockconverter;
     private final PagingRepository pagingRepository;
 
     // 매칭 시도
@@ -137,27 +132,19 @@ public class MatchService {
         return dto;
     }
 
-    // 유저 차단
-    @PostMapping("{userGiveBlock}/{userGetBlocked}/block")
-    public ResponseEntity<BlockDto> UserBlock(@PathVariable("userGiveBlock") long userGiveBlock, @PathVariable("userGetBlocked") long userGetBlocked) {
-        BlockDto response = blockService.userBlock(userGiveBlock, userGetBlocked);
-        return new ResponseEntity<>(response, HttpStatus.OK);
-    }
-
-    // 매칭 내역 리스트 조회 (매칭 홈) -> 재학생 리스트
-    public List<UserListDto> TrueList(int offset, int limit) {
-        List<User> userList = pagingRepository.findAllByGradStatusTrue(offset, limit);
+    // 나에게 연결을 시도한 회원 -> getMatched == 나
+    public List<UserListDto> homeGetMatchedList(long userId) {
+        List<User> userList = userRepository.findTop4ByUserGetMatched(userId);
         List<UserListDto> listdto = UserMapper.INSTANCE.entityToDtoList(userList);
 
         return listdto;
     }
 
-    // 매칭 내역 리스트 조회 (매칭 홈) -> 졸업생 리스트
-    public List<UserListDto> FalseList(int offset, int limit) {
-        List<User> userList = pagingRepository.findAllByGradStatusFalse(offset, limit);
+    // 내가 연결을 시도한 회원 -> Matching == 나
+    public List<UserListDto> homeMatchingList(long userId) {
+        List<User> userList = userRepository.findTop4ByUserMatching(userId);
         List<UserListDto> listdto = UserMapper.INSTANCE.entityToDtoList(userList);
 
         return listdto;
     }
-
 }

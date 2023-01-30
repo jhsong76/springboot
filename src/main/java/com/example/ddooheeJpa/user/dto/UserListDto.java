@@ -1,6 +1,5 @@
 package com.example.ddooheeJpa.user.dto;
 
-
 import com.example.ddooheeJpa.user.entity.UserInterest;
 import lombok.*;
 

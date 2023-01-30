@@ -9,7 +9,9 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface MatchRepository extends JpaRepository<UserMatch, Long> {
+
     @Modifying
     @Query("update UserMatch m set m.userMatchStatus = 'ACTIVE' where m.userGetMatched.userId = :userGetMatched and m.status = 'ACTIVE'")
     int updateUserByUserGetMatched(@Param("userGetMatched") Long userGetMatched);
+
 }

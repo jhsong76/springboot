@@ -1,7 +1,7 @@
 package com.example.ddooheeJpa.user.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.linkyB.backend.common.domain.BaseEntity;
+import com.example.ddooheeJpa.common.domain.BaseEntity;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

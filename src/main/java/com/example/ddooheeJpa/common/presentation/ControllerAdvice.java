@@ -1,7 +1,7 @@
 package com.example.ddooheeJpa.common.presentation;
 
-import com.linkyB.backend.common.dto.ExceptionResponse;
-import com.linkyB.backend.common.exception.LInkyBussinessException;
+import com.example.ddooheeJpa.common.dto.ExceptionResponse;
+import com.example.ddooheeJpa.common.exception.LInkyBussinessException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

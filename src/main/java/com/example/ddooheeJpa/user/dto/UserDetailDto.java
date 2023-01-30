@@ -16,6 +16,7 @@ public class UserDetailDto {
     private String userNickName;
     private String userMajorName;
     private String userStudentNum;
+    private String userBirth;
     private int userGender;
     private String userInfo;
     private String userProfileImg;

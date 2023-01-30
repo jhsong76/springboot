@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import java.util.List;
+
 @Repository
 @RequiredArgsConstructor
 public class PagingRepository {
@@ -26,4 +27,6 @@ public class PagingRepository {
                 .setMaxResults(limit)
                 .getResultList();
     }
+
+
 }
