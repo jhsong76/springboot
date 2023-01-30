@@ -14,12 +14,17 @@ import com.example.ddooheeJpa.match.entity.status;
 import com.example.ddooheeJpa.match.entity.userMatchStatus;
 import com.example.ddooheeJpa.match.mapper.MatchMapper;
 import com.example.ddooheeJpa.match.repository.MatchRepository;
+import com.example.ddooheeJpa.user.Mapper.UserMapper;
+import com.example.ddooheeJpa.user.dto.UserListDto;
 import com.example.ddooheeJpa.user.entity.User;
 import com.example.ddooheeJpa.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
@@ -100,4 +105,29 @@ public class MatchService {
         BlockDto dto = BlockMapper.INSTANCE.entityToDto(block);
         return dto;
     }
+
+    // 나에게 매칭 시도한 유저 전체 조회
+    public List<UserListDto> GetMatchedList(Long userGetMatched) {
+
+        userRepository.findById(userGetMatched)
+                .orElseThrow(() -> new LInkyBussinessException("해당 유저가 존재하지 않습니다.", HttpStatus.BAD_REQUEST));
+
+        List<User> users = userRepository.findAllByUserGetMatched(userGetMatched);
+        List<UserListDto> dto = UserMapper.INSTANCE.entityToDtoList(users);
+
+        return dto;
+    }
+
+    // 내가 매칭 시도한 유저 전체 조회
+    public List<UserListDto> MatchingList(Long userMatching) {
+
+        userRepository.findById(userMatching)
+                .orElseThrow(() -> new LInkyBussinessException("해당 유저가 존재하지 않습니다.", HttpStatus.BAD_REQUEST));
+
+        List<User> users = userRepository.findAllByUserMatching(userMatching);
+        List<UserListDto> dto = UserMapper.INSTANCE.entityToDtoList(users);
+
+        return dto;
+    }
+
 }

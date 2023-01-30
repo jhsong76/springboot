@@ -4,10 +4,13 @@ import com.example.ddooheeJpa.block.dto.BlockDto;
 import com.example.ddooheeJpa.match.dto.MatchDto;
 import com.example.ddooheeJpa.match.dto.MatchListDto;
 import com.example.ddooheeJpa.match.service.MatchService;
+import com.example.ddooheeJpa.user.dto.UserListDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -47,5 +50,22 @@ public class MatchController {
     public ResponseEntity<BlockDto> matchBlock(@PathVariable("id") Long id) {
         BlockDto response = matchService.matchDelete(id);
         return ResponseEntity.ok().body(response);
+    }
+
+    // 나에게 매칭 시도한 유저 전체 조회
+    @GetMapping("/{userGetMatched}/all")
+    public ResponseEntity<List<UserListDto>> GetMatchedList(@PathVariable("userGetMatched") long userGetMatched) {
+        List<UserListDto> response = matchService.GetMatchedList(userGetMatched);
+        return ResponseEntity.ok().body(response);
+
+    }
+
+    // 내가 매칭 시도한 유저 전체 조회
+    @GetMapping("{userMatching}/matching")
+    public ResponseEntity<List<UserListDto>> MatchingList(@PathVariable("userMatching") long userMatching) {
+
+        List<UserListDto> response = matchService.MatchingList(userMatching);
+        return ResponseEntity.ok().body(response);
+
     }
 }
