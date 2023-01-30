@@ -1,9 +1,13 @@
 package com.example.ddooheeJpa.match.service;
 
+import com.example.ddooheeJpa.block.dto.BlockDto;
+import com.example.ddooheeJpa.block.entity.UserBlock;
+import com.example.ddooheeJpa.block.mapper.BlockMapper;
 import com.example.ddooheeJpa.common.exception.LInkyBussinessException;
 import com.example.ddooheeJpa.match.converter.MatchConverter;
 import com.example.ddooheeJpa.match.dto.MatchDto;
 import com.example.ddooheeJpa.match.entity.UserMatch;
+import com.example.ddooheeJpa.match.entity.status;
 import com.example.ddooheeJpa.match.entity.userMatchStatus;
 import com.example.ddooheeJpa.match.mapper.MatchMapper;
 import com.example.ddooheeJpa.match.repository.MatchRepository;
@@ -11,13 +15,15 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-@Service
+B@Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
 public class MatchService {
 
     private final MatchConverter matchConverter;
     private final MatchRepository matchRepository;
+    private final BlockRepository blockRepository;
+    private final Blockconverter blockconverter;
 
     // 매칭 시도
     @Transactional
@@ -44,6 +50,20 @@ public class MatchService {
         entity.update(userMatchStatus.ACTIVE);
         MatchDto dto = MatchMapper.INSTANCE.entityToDto(entity);
 
+        return dto;
+    }
+
+    // 매칭 거절
+    @Transactional
+    public BlockDto matchNo(Long id) {
+
+        UserMatch entity = matchRepository.findById(id)
+                .orElseThrow(() -> new LInkyBussinessException("해당 연결내역이 존재하지 않습니다.", HttpStatus.BAD_REQUEST));
+
+        entity.updateMatch(status.INACTIVE);
+
+        UserBlock block = blockRepository.save(blockconverter.block(entity.getUserGetMatched(), entity.getUserMatching()));
+        BlockDto dto = BlockMapper.INSTANCE.entityToDto(block);
         return dto;
     }
 

@@ -1,5 +1,6 @@
 package com.example.ddooheeJpa.match.controller;
 
+import com.example.ddooheeJpa.block.dto.BlockDto;
 import com.example.ddooheeJpa.match.dto.MatchDto;
 import com.example.ddooheeJpa.match.service.MatchService;
 import lombok.RequiredArgsConstructor;
@@ -26,4 +27,10 @@ public class MatchController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
+    // 매칭 거절
+    @PostMapping("/{id}")
+    public ResponseEntity<BlockDto> matchNo(@PathVariable("id") long id) {
+        BlockDto response = matchService.matchNo(id);
+        return ResponseEntity.ok().body(response);
+    }
 }
