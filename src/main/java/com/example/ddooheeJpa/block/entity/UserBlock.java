@@ -3,11 +3,11 @@ package com.example.ddooheeJpa.block.entity;
 
 
 import com.example.ddooheeJpa.common.domain.BaseEntity;
+import com.example.ddooheeJpa.user.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 

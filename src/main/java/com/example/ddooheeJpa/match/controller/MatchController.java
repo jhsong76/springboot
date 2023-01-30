@@ -41,4 +41,11 @@ public class MatchController {
         MatchListDto response = matchService.matchAllOk(userGetMatched);
         return ResponseEntity.ok().body(response);
     }
+
+    // 내가 매칭 시도한 내역 삭제
+    @PostMapping("/{id}/block")
+    public ResponseEntity<BlockDto> matchBlock(@PathVariable("id") Long id) {
+        BlockDto response = matchService.matchDelete(id);
+        return ResponseEntity.ok().body(response);
+    }
 }

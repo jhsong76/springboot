@@ -4,6 +4,7 @@ import com.example.ddooheeJpa.match.dto.MatchListDto;
 import com.example.ddooheeJpa.match.entity.UserMatch;
 import com.example.ddooheeJpa.match.entity.status;
 import com.example.ddooheeJpa.match.entity.userMatchStatus;
+import com.example.ddooheeJpa.user.entity.User;
 import org.springframework.stereotype.Component;
 
 @Component

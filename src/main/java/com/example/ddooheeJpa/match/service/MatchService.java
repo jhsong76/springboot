@@ -1,8 +1,10 @@
 package com.example.ddooheeJpa.match.service;
 
+import com.example.ddooheeJpa.block.converter.BlockConverter;
 import com.example.ddooheeJpa.block.dto.BlockDto;
 import com.example.ddooheeJpa.block.entity.UserBlock;
 import com.example.ddooheeJpa.block.mapper.BlockMapper;
+import com.example.ddooheeJpa.block.repository.BlockRepository;
 import com.example.ddooheeJpa.common.exception.LInkyBussinessException;
 import com.example.ddooheeJpa.match.converter.MatchConverter;
 import com.example.ddooheeJpa.match.dto.MatchDto;
@@ -12,11 +14,13 @@ import com.example.ddooheeJpa.match.entity.status;
 import com.example.ddooheeJpa.match.entity.userMatchStatus;
 import com.example.ddooheeJpa.match.mapper.MatchMapper;
 import com.example.ddooheeJpa.match.repository.MatchRepository;
+import com.example.ddooheeJpa.user.entity.User;
+import com.example.ddooheeJpa.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-B@Service
+@Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
 public class MatchService {
@@ -24,7 +28,8 @@ public class MatchService {
     private final MatchConverter matchConverter;
     private final MatchRepository matchRepository;
     private final BlockRepository blockRepository;
-    private final Blockconverter blockconverter;
+    private final BlockConverter blockconverter;
+    private final UserRepository userRepository;
 
     // 매칭 시도
     @Transactional
@@ -81,4 +86,18 @@ public class MatchService {
         return match;
     }
 
+    // 내가 매칭 시도한 내역 삭제
+    @Transactional
+    public BlockDto matchDelete(Long id) {
+
+        UserMatch match = matchRepository.findById(id)
+                .orElseThrow(() -> new LInkyBussinessException("해당 연결내역이 존재하지 않습니다.", HttpStatus.BAD_REQUEST));
+
+        match.updateMatch(status.INACTIVE);
+        match.update(userMatchStatus.INACTIVE);
+
+        UserBlock block = blockRepository.save(blockconverter.blockGetMatched(match.getUserMatching(), match.getUserGetMatched()));
+        BlockDto dto = BlockMapper.INSTANCE.entityToDto(block);
+        return dto;
+    }
 }

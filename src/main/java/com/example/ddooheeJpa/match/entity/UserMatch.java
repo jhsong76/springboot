@@ -1,7 +1,7 @@
 package com.example.ddooheeJpa.match.entity;
 
-import com.linkyB.backend.common.domain.BaseEntity;
-import com.linkyB.backend.user.entity.User;
+import com.example.ddooheeJpa.common.domain.BaseEntity;
+import com.example.ddooheeJpa.user.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
