@@ -73,7 +73,10 @@ public class HomeController {
         return ResponseEntity.ok().body(response);
     }
 
-//    // 닉네임 검색 기능
-//    @GetMapping("/search")
-//    public ResponseEntity<UserListDto> SearchByNickName(@RequestParam(""))
+    // 닉네임 검색 기능
+    @GetMapping("/search")
+    public ResponseEntity<List<UserListDto>> SearchByNickName(@RequestParam(value ="nickName")String nickName) {
+        List<UserListDto> response = homeService.search(nickName);
+        return ResponseEntity.ok().body(response);
+    }
 }

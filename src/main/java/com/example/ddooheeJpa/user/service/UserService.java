@@ -2,6 +2,7 @@ package com.example.ddooheeJpa.user.service;
 
 import com.example.ddooheeJpa.common.exception.LInkyBussinessException;
 import com.example.ddooheeJpa.user.dto.UserDetailDto;
+import com.example.ddooheeJpa.user.dto.UserListDto;
 import com.example.ddooheeJpa.user.entity.User;
 import com.example.ddooheeJpa.user.mapper.UserMapper;
 import com.example.ddooheeJpa.user.repository.UserRepository;
@@ -9,6 +10,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 
 @Service
