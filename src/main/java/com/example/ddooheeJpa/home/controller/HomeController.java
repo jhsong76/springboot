@@ -33,8 +33,10 @@ public class HomeController {
     private final HomeService homeService;
     private final FilterService filterService;
 
-
-    // 재학생, 졸업생 유저 리스트 2개 조회
+    /*
+     * 재학생, 졸업생 유저 리스트 2개 조회
+     * 필터 디폴트 값
+     */
     @GetMapping("/all")
     public ResponseEntity<Map<String, List<UserListDto>>> HomeList(@RequestParam(value = "offset", defaultValue = "0") int offset,
                                                                    @RequestParam(value = "limit", defaultValue = "20") int limit) {
@@ -52,8 +54,10 @@ public class HomeController {
         return ResponseEntity.ok().body(response);
     }
 
-    // 필터 저장
-    // jwt 토큰에서 유저 인덱스 가져오는걸로 변경하기
+
+    /*
+     * 필터 저장 후 필터 적용된 리스트 2개 반환
+     */
     @PostMapping("/filter/save/{id}")
     public ResponseEntity<Map<String, List<UserListDto>>> saveFilter(@PathVariable("id") long userId,
                                       @RequestBody UserFilterRequestDto dto) {
