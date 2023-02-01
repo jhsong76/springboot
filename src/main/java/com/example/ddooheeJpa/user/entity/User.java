@@ -37,7 +37,6 @@ public class User extends BaseEntity {
     private String userStudentNum;
     private String userGender;
     private String userMbti;
-
     private String userInfo;
     private String userProfileImg;
 

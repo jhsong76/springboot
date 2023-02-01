@@ -47,4 +47,5 @@ public interface UserRepository extends JpaRepository<User, Long> {
     List<User> findTop4ByUserMatching(@Param("userId") long userId);
 
     List<User> findByuserNickNameContaining(String nickName);
+
 }

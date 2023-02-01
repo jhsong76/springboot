@@ -10,6 +10,7 @@ import com.example.ddooheeJpa.user.entity.UserInterest;
 import com.example.ddooheeJpa.user.entity.UserPersonality;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
