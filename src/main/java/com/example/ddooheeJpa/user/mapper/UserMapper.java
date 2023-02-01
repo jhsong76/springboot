@@ -25,14 +25,9 @@ public interface UserMapper {
 //
     List<UserListDto> entityToDtoList(List<User> entity);
 
-    List<User> dtoToEntityList(List<UserListDto> dto);
     UserDetailDto UserdetaildtoToEntity(User entity);
 
 
-
-    List<User> toInterestListDto(List<UserInterest> userInterests);
-
-    List<User> toPersonalityListDto(List<UserPersonality> userPersonalities);
 
     UserFilterDto entityToFilterDto(User entity);
 

@@ -22,7 +22,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-02-01T20:23:03+0900",
+    date = "2023-02-02T00:15:24+0900",
     comments = "version: 1.3.1.Final, compiler: javac, environment: Java 11.0.15 (Oracle Corporation)"
 )
 @Component
@@ -98,20 +98,6 @@ public class UserMapperImpl implements UserMapper {
     }
 
     @Override
-    public List<User> dtoToEntityList(List<UserListDto> dto) {
-        if ( dto == null ) {
-            return null;
-        }
-
-        List<User> list = new ArrayList<User>( dto.size() );
-        for ( UserListDto userListDto : dto ) {
-            list.add( userListDtoToUser( userListDto ) );
-        }
-
-        return list;
-    }
-
-    @Override
     public UserDetailDto UserdetaildtoToEntity(User entity) {
         if ( entity == null ) {
             return null;
@@ -141,34 +127,6 @@ public class UserMapperImpl implements UserMapper {
         userDetailDto.userLikeCount( entity.getUserLikeCount() );
 
         return userDetailDto.build();
-    }
-
-    @Override
-    public List<User> toInterestListDto(List<UserInterest> userInterests) {
-        if ( userInterests == null ) {
-            return null;
-        }
-
-        List<User> list = new ArrayList<User>( userInterests.size() );
-        for ( UserInterest userInterest : userInterests ) {
-            list.add( userInterestToUser( userInterest ) );
-        }
-
-        return list;
-    }
-
-    @Override
-    public List<User> toPersonalityListDto(List<UserPersonality> userPersonalities) {
-        if ( userPersonalities == null ) {
-            return null;
-        }
-
-        List<User> list = new ArrayList<User>( userPersonalities.size() );
-        for ( UserPersonality userPersonality : userPersonalities ) {
-            list.add( userPersonalityToUser( userPersonality ) );
-        }
-
-        return list;
     }
 
     @Override
@@ -217,42 +175,5 @@ public class UserMapperImpl implements UserMapper {
         }
 
         return userListDto.build();
-    }
-
-    protected User userListDtoToUser(UserListDto userListDto) {
-        if ( userListDto == null ) {
-            return null;
-        }
-
-        User user = new User();
-
-        if ( user.getUserInterests() != null ) {
-            List<UserInterest> list = userListDto.getUserInterests();
-            if ( list != null ) {
-                user.getUserInterests().addAll( list );
-            }
-        }
-
-        return user;
-    }
-
-    protected User userInterestToUser(UserInterest userInterest) {
-        if ( userInterest == null ) {
-            return null;
-        }
-
-        User user = new User();
-
-        return user;
-    }
-
-    protected User userPersonalityToUser(UserPersonality userPersonality) {
-        if ( userPersonality == null ) {
-            return null;
-        }
-
-        User user = new User();
-
-        return user;
     }
 }
