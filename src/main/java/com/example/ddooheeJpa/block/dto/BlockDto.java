@@ -7,5 +7,5 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 public class BlockDto {
-    private long id;
+    private long blockId;
 }

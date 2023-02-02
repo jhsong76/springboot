@@ -21,7 +21,7 @@ public class UserBlock {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "userBlockIdx")
-    private Long id;
+    private Long blockId;
 
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "userGiveBlock")

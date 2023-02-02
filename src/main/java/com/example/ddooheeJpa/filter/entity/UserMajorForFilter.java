@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @NoArgsConstructor
@@ -31,10 +32,6 @@ public class UserMajorForFilter extends BaseEntity {
     @JoinColumn(name = "user_id")
     private User user;
 
-//    @JsonIgnore
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "userFilterIdx")
-//    private UserGenderForFilter userFilter;
 
 
     @Column(name = "blockedMajor")

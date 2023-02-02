@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-02-02T00:15:24+0900",
+    date = "2023-02-02T02:43:54+0900",
     comments = "version: 1.3.1.Final, compiler: javac, environment: Java 11.0.15 (Oracle Corporation)"
 )
 @Component
@@ -23,7 +23,7 @@ public class ReportMapperImpl implements ReportMapper {
 
         UserReportBuilder userReport = UserReport.builder();
 
-        userReport.id( dto.getId() );
+        userReport.reportId( dto.getReportId() );
 
         return userReport.build();
     }
@@ -36,8 +36,8 @@ public class ReportMapperImpl implements ReportMapper {
 
         ReportDtoBuilder reportDto = ReportDto.builder();
 
-        if ( entity.getId() != null ) {
-            reportDto.id( entity.getId() );
+        if ( entity.getReportId() != null ) {
+            reportDto.reportId( entity.getReportId() );
         }
 
         return reportDto.build();

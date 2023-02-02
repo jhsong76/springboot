@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-
+import java.time.LocalDateTime;
 
 
 @Entity
@@ -35,5 +35,6 @@ public class UserGenderForFilter extends BaseEntity {
 
     @Column(name = "Gender")
     private String gender;
+
 
 }

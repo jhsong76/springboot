@@ -7,6 +7,6 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 public class MatchDto {
-    private long id;
+    private long matchId;
 
 }

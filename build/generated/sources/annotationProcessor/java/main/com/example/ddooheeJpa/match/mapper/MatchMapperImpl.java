@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-02-02T00:15:24+0900",
+    date = "2023-02-02T02:43:54+0900",
     comments = "version: 1.3.1.Final, compiler: javac, environment: Java 11.0.15 (Oracle Corporation)"
 )
 @Component
@@ -23,7 +23,7 @@ public class MatchMapperImpl implements MatchMapper {
 
         UserMatchBuilder userMatch = UserMatch.builder();
 
-        userMatch.id( dto.getId() );
+        userMatch.matchId( dto.getMatchId() );
 
         return userMatch.build();
     }
@@ -36,8 +36,8 @@ public class MatchMapperImpl implements MatchMapper {
 
         MatchDtoBuilder matchDto = MatchDto.builder();
 
-        if ( entity.getId() != null ) {
-            matchDto.id( entity.getId() );
+        if ( entity.getMatchId() != null ) {
+            matchDto.matchId( entity.getMatchId() );
         }
 
         return matchDto.build();

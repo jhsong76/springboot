@@ -24,7 +24,7 @@ public class UserMatch extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "userMatchIdx")
-    private Long id;
+    private Long matchId;
 
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "userGetMatched")

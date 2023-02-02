@@ -22,15 +22,15 @@ import java.util.List;
 @EnableWebMvc
 public class SwaggerConfig {
     private ApiInfo swaggerInfo() {
-        return new ApiInfoBuilder().title("There API")
-                .description("There API Docs").build();
+        return new ApiInfoBuilder().title("LINKYB API")
+                .description("LINKYB API Docs").build();
     }
 
     @Bean
     public Docket swaggerApi() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(swaggerInfo()).select()
-                .apis(RequestHandlerSelectors.basePackage("com.there.src"))
+                .apis(RequestHandlerSelectors.basePackage("com.example.ddooheeJpa"))
                 .paths(PathSelectors.any())
                 .build()
                 .useDefaultResponseMessages(false)

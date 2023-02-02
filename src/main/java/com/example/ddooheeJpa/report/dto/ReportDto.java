@@ -7,5 +7,5 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 public class ReportDto {
-    private long id;
+    private long reportId;
 }
