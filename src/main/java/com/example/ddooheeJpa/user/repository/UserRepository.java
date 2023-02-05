@@ -18,7 +18,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     List<User> findAllByUserMatching(@Param("userMatching") long userMatching);
 
     @Query(value = "SELECT u FROM User u JOIN UserBlock b ON b.userGetBlocked.userId = u.userId " +
-            "WHERE b.userGiveBlock.userId = :userGiveBlock AND b.status = 'ACTIVE'")
+            "WHERE b.userGiveBlock.userId = :userGiveBlock AND b.blockStatus = 'ACTIVE'")
     List<User> findAllByUserGiveBlock(@Param("userGiveBlock") long userGiveBlock);
 
     @Query(value = "SELECT * FROM user u WHERE user_major_name NOT IN (SELECT umff.blocked_major FROM user_major_for_filter umff WHERE umff.user_id = ?)\n" +

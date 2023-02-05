@@ -3,9 +3,11 @@ package com.example.ddooheeJpa.block.serivce;
 import com.example.ddooheeJpa.block.converter.Blockconverter;
 import com.example.ddooheeJpa.block.dto.BlockDto;
 import com.example.ddooheeJpa.block.entity.UserBlock;
+import com.example.ddooheeJpa.block.entity.userBlockStatus;
 import com.example.ddooheeJpa.block.mapper.BlockMapper;
 import com.example.ddooheeJpa.block.repository.BlockRepository;
 import com.example.ddooheeJpa.common.exception.LInkyBussinessException;
+import com.example.ddooheeJpa.user.dto.UserCancleBlockRequestDto;
 import com.example.ddooheeJpa.user.dto.UserListDto;
 import com.example.ddooheeJpa.user.entity.User;
 import com.example.ddooheeJpa.user.mapper.UserMapper;
@@ -16,6 +18,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -45,5 +48,22 @@ public class BlockService {
         List<User> users = userRepository.findAllByUserGiveBlock(userGiveBlock);
         List<UserListDto> dto = UserMapper.INSTANCE.entityToDtoList(users);
         return dto;
+    }
+
+    @Transactional
+    // 차단 해제
+    public void cancleBlock(UserCancleBlockRequestDto dto) {
+
+        List<Long> blockList = dto.getBlockId();
+        for (Long blockId : blockList)
+            //UserBlock block = BlockMapper.INSTANCE.dtoToEntity(i);
+            blockRepository.updateStatus(blockId);
+        //i.updateBlock(userBlockStatus.INACTIVE);
+
+        //return blockList;
+        //giveBlock.updateBlock(userBlockStatus.INACTIVE);
+
+        // 리스트로 들어온 값들 INACTIVE 처리
+
     }
 }

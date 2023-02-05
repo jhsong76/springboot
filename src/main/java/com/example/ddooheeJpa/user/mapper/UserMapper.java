@@ -22,12 +22,10 @@ public interface UserMapper {
     User dtoToEntity(UserDto dto);
 
     UserDto entityToDto(User entity);
-//
+
     List<UserListDto> entityToDtoList(List<User> entity);
 
     UserDetailDto UserdetaildtoToEntity(User entity);
-
-
 
     UserFilterDto entityToFilterDto(User entity);
 

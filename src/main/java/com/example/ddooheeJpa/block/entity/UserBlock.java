@@ -1,7 +1,7 @@
 package com.example.ddooheeJpa.block.entity;
 
 
-
+import com.example.ddooheeJpa.match.entity.status;
 import com.example.ddooheeJpa.user.entity.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,6 +32,12 @@ public class UserBlock {
     private User userGetBlocked;
 
     @Enumerated(EnumType.STRING)
-    private userBlockStatus status;
+    private userBlockStatus blockStatus;
+
+    public void updateBlock(userBlockStatus blockStatus) {
+        this.blockStatus = blockStatus;
+    }
+
 
 }
+

@@ -87,4 +87,8 @@ public class User extends BaseEntity {
         this.userStatusForMyInfo = userStatusForMyInfo;
     }
 
+    public void updateUserNotification(UserNotification userNotification) {
+        this.userNotification = userNotification;
+    }
+
 }

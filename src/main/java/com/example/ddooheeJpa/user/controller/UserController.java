@@ -1,18 +1,21 @@
 package com.example.ddooheeJpa.user.controller;
-
 import com.example.ddooheeJpa.block.serivce.BlockService;
 import com.example.ddooheeJpa.like.dto.LikeDto;
 import com.example.ddooheeJpa.like.service.LikeService;
 import com.example.ddooheeJpa.report.dto.ReportDto;
 import com.example.ddooheeJpa.report.dto.ReportRequestDto;
 import com.example.ddooheeJpa.report.service.ReportService;
+import com.example.ddooheeJpa.user.dto.UserCancleBlockRequestDto;
 import com.example.ddooheeJpa.user.dto.UserDetailDto;
+import com.example.ddooheeJpa.user.dto.UserDto;
 import com.example.ddooheeJpa.user.dto.UserListDto;
+
 import com.example.ddooheeJpa.user.service.UserService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,6 +34,7 @@ public class UserController {
     /**
      * 유저 정보 상세 조회
      * [GET] /users/:id
+     *
      * @return ResponseEntity<UserDetailDto>
      */
     @ApiOperation(value = "유저 상제 조회 API", notes = "유저 인덱스 값 입력시 해당하는 유저의 상세 정보 반환")
@@ -49,6 +53,7 @@ public class UserController {
     /**
      * 유저 좋아요 등록
      * [POST] /users/:userGiveLikes/:userGetLikes
+     *
      * @return ResponseEntity<LikeDto>
      */
     @ApiOperation(value = "유저 좋아요 등록 API", notes = "userGiveLikes -> 좋아요를 한 유저, userGetLikes -> 좋아요를 받은 유저," +
@@ -68,6 +73,7 @@ public class UserController {
     /**
      * 유저 신고 등록
      * [POST] /users/report/:userReport/:userGetReported
+     *
      * @return ResponseEntity<ReportDto>
      */
     @ApiOperation(value = "유저 신고 등록 API", notes = "userReport -> 신고를 한 유저, userGetReported -> 신고를 받은 유저")
@@ -88,7 +94,8 @@ public class UserController {
     /**
      * 차단 리스트 조회
      * [GET] /users/block/:userGiveBlock
-     * @return ResponseEntity<List<UserListDto>>
+     *
+     * @return ResponseEntity<List < UserListDto>>
      */
     @ApiOperation(value = "차단 리스트 조회 api", notes = "userGiveBlock이 차단한 유저 리스트 반환")
     @ApiResponses({
@@ -101,4 +108,31 @@ public class UserController {
         return ResponseEntity.ok().body(response);
     }
 
+    /**
+     * 차단 해제
+     * [PATCH] /users/block/cancle/:userGiveBlock
+     *
+     * @return ResponseEntity<List < UserListDto>>
+     */
+    @PatchMapping("/block")
+    public String cancleBlock(@RequestBody UserCancleBlockRequestDto dto) {
+        blockService.cancleBlock(dto);
+        return "차단 해제가 되었습니다.";
+    }
+
+    // 알림 활성화
+    @PatchMapping("alaram/{userId}")
+    public ResponseEntity<UserDto> activeAlaram(@PathVariable("userId")long userId) {
+        UserDto response = userService.activeAlaram(userId);
+        return ResponseEntity.ok().body(response);
+    }
+
+    // 알림 비활성화
+    @PatchMapping("alaram/inactive/{userId}")
+    public ResponseEntity<UserDto> inactiveAlaram(@PathVariable("userId")long userId) {
+        UserDto response = userService.inactiveAlaram(userId);
+        return ResponseEntity.ok().body(response);
+    }
 }
+
+

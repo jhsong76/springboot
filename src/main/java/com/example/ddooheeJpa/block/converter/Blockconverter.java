@@ -13,7 +13,7 @@ public class Blockconverter {
         return UserBlock.builder()
                 .userGiveBlock(userGetMatched)
                 .userGetBlocked(userMatcing)
-                .status(userBlockStatus.ACTIVE)
+                .blockStatus(userBlockStatus.ACTIVE)
                 .build();
     }
 
@@ -21,10 +21,7 @@ public class Blockconverter {
         return UserBlock.builder()
                 .userGiveBlock(userMatching)
                 .userGetBlocked(userGetMatched)
-                .status(userBlockStatus.ACTIVE)
+                .blockStatus(userBlockStatus.ACTIVE)
                 .build();
     }
-
-
-
 }

@@ -5,6 +5,8 @@ import com.example.ddooheeJpa.block.entity.UserBlock;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
+import java.util.List;
+
 @Mapper(componentModel = "spring")
 public interface BlockMapper {
     BlockMapper INSTANCE = Mappers.getMapper(BlockMapper.class);
@@ -12,4 +14,5 @@ public interface BlockMapper {
     UserBlock dtoToEntity(BlockDto dto);
 
     BlockDto entityToDto(UserBlock entity);
+
 }
